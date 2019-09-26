@@ -23,8 +23,7 @@ class MainPage extends StatelessWidget {
     print("MainPagess build......");
     return  DefaultTabController(
         length: _allPages.length,
-        child:
-        (
+        child: Scaffold(
           appBar: new MyAppBar(
             //leading: Container(
                 //child: new ClipOval(

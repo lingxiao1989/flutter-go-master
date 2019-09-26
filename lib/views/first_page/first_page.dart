@@ -95,12 +95,13 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
     return
       Column(
         children: <Widget>[
+
           Stack(
             //alignment: const FractionalOffset(0.9, 0.1),//方法一
               children: <Widget>[
                 Pagination(),
                 Positioned(//方法二
-                    top: 10.0,
+                    top: 50.0,
                     left: 0.0,
                     child: DisclaimerMsg(key:key,pWidget:this)
                 ),
@@ -116,6 +117,41 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
     super.build(context);
     return new Column(
         children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              _TextImgWidget(
+                '找电影',
+                'assets/images/food01.jpeg',
+//                tabCallBack: () {
+//                  print('点击找电影');
+//                  Router.push(context, Router.searchPage, '找电影');
+//                },
+              ),
+              _TextImgWidget(
+                '豆瓣榜单',
+                'assets/images/food02.jpeg',
+//                tabCallBack: () {
+//                  print('点击豆瓣榜单');
+//                  Router.push(context, Router.searchPage, '豆瓣榜单');
+//                },
+              ),
+              _TextImgWidget(
+                '豆瓣猜',
+                'assets/images/food03.jpeg',
+//                tabCallBack: () {
+//                  Router.push(context, Router.searchPage, '豆瓣猜');
+//                },
+              ),
+              _TextImgWidget(
+                '豆瓣片单',
+                'assets/images/food04.jpeg',
+//                tabCallBack: () {
+//                  Router.push(context, Router.searchPage, '豆瓣片单');
+//                },
+              )
+            ],
+          ),
 //          new Stack(
 //            //alignment: const FractionalOffset(0.9, 0.1),//方法一
 //            children: <Widget>[
@@ -139,3 +175,46 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
 }
 
 
+class _TextImgWidget extends StatelessWidget {
+  final String text;
+  final String imgAsset;
+  //final TapCallback tabCallBack;
+
+  _TextImgWidget(
+      this.text,
+      this.imgAsset, {
+        Key key,
+        //this.tabCallBack,
+      }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+//      onTap: () {
+//        if (tabCallBack != null) {
+//          tabCallBack();
+//        }
+//      },
+      child: Column(
+        children: <Widget>[
+          Image.asset(
+            imgAsset,
+            width: 45,
+            height: 45,
+          ),
+          Text(
+            text,
+            style: TextStyle(
+                fontSize: 13,
+                color: Color.fromARGB(
+                  255,
+                  128,
+                  128,
+                  128,
+                )),
+          )
+        ],
+      ),
+    );
+  }
+}
