@@ -19,7 +19,7 @@ import 'package:flutter_go/utils/data_utils.dart';
 
 //import 'views/welcome_page/index.dart';
 
-const int ThemeColor = 0xFFC91B3A;
+const int ThemeColor = 0xff0047cc;
 SpUtil sp;
 var db;
 
