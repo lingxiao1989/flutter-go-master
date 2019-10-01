@@ -168,8 +168,8 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(top: 49, left: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
                       children: <Widget>[
                         _TextImgWidget(
                         //'找电影',
@@ -251,6 +251,38 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
             ),
 
           ]
+        ),
+        //new ListView(),
+        new Column(
+            children: <Widget>[
+              new Container(
+                  height: 30,
+                  child: Stack(
+                      children: <Widget>[
+                        PositionedDirectional(
+                          top: 0,
+                          start: 15,
+                          child:
+                          SizedBox(
+                              width: 199,
+                              height: 28,
+                              child:	 Text(
+                                  "Recommended Cards",
+                                  style: const TextStyle(
+                                      color:	const Color(0xff042c5c),
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: "ProximaNova",
+                                      fontStyle:	FontStyle.normal,
+                                      fontSize: 20.0
+                                  )
+                              )
+                          ),
+                        ),
+                      ]
+                  )
+              ),
+              //new ListView()
+            ]
         ),
         //new listComp.ListRefresh(getIndexListData,makeCard),
           //child: new List(),
