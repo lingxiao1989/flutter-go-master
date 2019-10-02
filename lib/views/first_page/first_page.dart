@@ -170,6 +170,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     padding: EdgeInsets.only(top: 49, left: 16),
                     child: ListView(
                       scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.all(8.0),
                       children: <Widget>[
                         _TextImgWidget(
                         //'找电影',
