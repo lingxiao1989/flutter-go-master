@@ -40,7 +40,13 @@ class ListViewItem extends StatelessWidget {
         title: Padding(
           child: Text(
             itemTitle,
-            style: TextStyle(color: Colors.black, fontSize: 15.0),
+            style: TextStyle(
+                color:  const Color(0xff042c5c),
+                fontWeight: FontWeight.w700,
+                fontFamily: "ProximaNova",
+                fontStyle:  FontStyle.normal,
+                fontSize: 14.0
+            ),
           ),
           padding: EdgeInsets.only(top: 10.0),
         ),
@@ -48,12 +54,34 @@ class ListViewItem extends StatelessWidget {
           children: <Widget>[
             Padding(
               child: Text(data,
-                  style: TextStyle(color: Colors.black54, fontSize: 10.0)),
+                  style: TextStyle(
+                      color:  const Color(0xff77869e),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 12.0
+                  )
+              ),
               padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
             )
           ],
         ),
-        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 30.0),
+        trailing: SizedBox(
+            width: 39,
+            height: 22,
+            child:   Text(
+                "1.6%",
+                style: const TextStyle(
+                    color:  const Color(0xff1bc773),
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "ProximaNova",
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 18.0
+                ),
+                textAlign: TextAlign.right
+            )
+        )
+          //Icon(Icons.keyboard_arrow_right, color: Colors.grey, size: 30.0),
       ),
     );
   }

@@ -170,7 +170,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     padding: EdgeInsets.only(top: 49, left: 16),
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.all(8.0),
+                      primary: true,
                       children: <Widget>[
                         _TextImgWidget(
                         //'找电影',
@@ -180,6 +180,9 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         //                  Router.push(context, Router.searchPage, '找电影');
                         //                },
                         ),
+                        new Container(
+                          width: 20,
+                        ),
                         _TextImgWidget(
                         //'豆瓣榜单',
                         'assets/images/Cate2.png',
@@ -188,12 +191,18 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         //                  Router.push(context, Router.searchPage, '豆瓣榜单');
                         //                },
                         ),
+                        new Container(
+                          width: 20,
+                        ),
                         _TextImgWidget(
                         //'豆瓣猜',
                         'assets/images/Cate3.png',
                         //                tabCallBack: () {
                         //                  Router.push(context, Router.searchPage, '豆瓣猜');
                         //                },
+                        ),
+                        new Container(
+                          width: 20,
                         ),
                         _TextImgWidget(
                         //'豆瓣片单',
@@ -323,22 +332,34 @@ class _TextImgWidget extends StatelessWidget {
 //      },
       child: Column(
         children: <Widget>[
-          Image.asset(
-            imgAsset,
-            width: 45,
-            height: 45,
-          ),
-          /*Text(
-            text,
-            style: TextStyle(
-                fontSize: 13,
-                color: Color.fromARGB(
-                  255,
-                  128,
-                  128,
-                  128,
-                )),
-          )*/
+          new Container(
+            width: 48,
+            height: 48,
+            padding: EdgeInsets.only(left: 10, right: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                    Radius.circular(8)
+                ),
+                color: const Color(0xfff5f6f8)
+            ),
+            child: Image.asset(
+              imgAsset,
+              width: 45,
+              height: 45,
+
+            ),
+            /*Text(
+              text,
+              style: TextStyle(
+                  fontSize: 13,
+                  color: Color.fromARGB(
+                    255,
+                    128,
+                    128,
+                    128,
+                  )),
+            )*/
+          )
         ],
       ),
     );
