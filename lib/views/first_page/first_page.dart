@@ -82,9 +82,9 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
 
   /// 每个item的样式
   Widget makeCard(index,item){
-    var backPic= 'assets/images/bank_zs.png';
-    var myTitle = 'China Merchants Bank';
-    var myUsername = '3x MR Points on Restaurants and Groceries';
+    var backPic= 'assets/images/goldCardPng.png';
+    var myTitle = 'American Express® Gold';
+    var myUsername = '4x Membership Reward Points';
     //var myTitle = '${item.title}';
     //var myUsername = '${'👲'}: ${item.username} ';
     var codeUrl = '${item.detailUrl}';

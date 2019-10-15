@@ -12,9 +12,9 @@ class _Page {
 }
 
 final List<_Page> _allPages = <_Page>[
-  _Page('Cards'),
-  _Page('Programs'),
-  _Page('Accounts'),
+  _Page('Spending'),
+  _Page('Award Night'),
+  _Page('Award Ticket'),
 ];
 
 class MainPage extends StatelessWidget {
@@ -73,13 +73,13 @@ class TabBarViewLayout extends StatelessWidget {
   Widget buildTabView(BuildContext context, _Page page) {
     String labelId = page.labelId;
     switch (labelId) {
-      case 'Cards':
+      case 'Spending':
         return FirstPage();
         break;
-      case 'Programs':
+      case 'Award Night':
         return FirstPage();
         break;
-      case 'Accounts':
+      case 'Award Ticket':
         return SubPage();
         break;
       default:

@@ -35,7 +35,7 @@ class ListViewItem extends StatelessWidget {
           itemPic,
           width: 50,
           height: 50,
-          color: Colors.black45,
+          //color: Colors.black45,
         ),
         title: Padding(
           child: Text(
@@ -67,7 +67,7 @@ class ListViewItem extends StatelessWidget {
           ],
         ),
         trailing: SizedBox(
-            width: 39,
+            width: 45,
             height: 22,
             child:   Text(
                 "1.6%",
