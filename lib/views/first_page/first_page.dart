@@ -115,9 +115,10 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return new Column(
-      children: <Widget>[
-        new Container(
+    return new CustomScrollView(
+      slivers: <Widget>[
+        SliverToBoxAdapter(
+          child: new Container(
           height: 170,
           color: const Color(0xff0047cc),
           child: Stack(
@@ -231,8 +232,9 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
 //            ),
 //          ]),
 //          SizedBox(height: 2, child:Container(color: Theme.of(context).primaryColor)),
-        new Column(
-          children: <Widget>[
+
+        new CustomScrollView(
+          child:
             new Container(
               height: 30,
               child: Stack(
@@ -263,8 +265,8 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
           ]
         ),
         //new ListView(),
-        new Column(
-            children: <Widget>[
+        new CustomScrollView(
+          child:
               new Container(
                   height: 30,
                   child: Stack(
@@ -297,12 +299,13 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
         //new listComp.ListRefresh(getIndexListData,makeCard),
           //child: new List(),
           //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
-        new Expanded(
+    new SliverToBoxAdapter(
+      child: new Expanded(
           //child: new List(),
           //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
             child: listComp.ListRefresh(getIndexListData,makeCard)
-        ),
-
+      ),
+    )
         //new listComp.ListRefresh(getIndexListData,makeCard),
       ]
     );
