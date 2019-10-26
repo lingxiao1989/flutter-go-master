@@ -83,12 +83,14 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
   /// 每个item的样式
   Widget makeCard(index,item){
     var backPic= 'assets/images/goldCardPng.png';
-    var myTitle = 'American Express® Gold';
-    var myUsername = '4x Membership Reward Points';
+    var myCardName = 'American Express® Gold'; //'${item.CardName}';
+    var myProgramName = '4x Membership Reward Points'; //'${item.ProgramName}';
+    //'${item.PointValue}';
+    //'${item.CardImgID}';
     //var myTitle = '${item.title}';
     //var myUsername = '${'👲'}: ${item.username} ';
     var codeUrl = '${item.detailUrl}';
-    return new ListViewItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myTitle,data: myUsername,);
+    return new ListViewItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
   }
 
   headerView(){
@@ -220,7 +222,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
             ],
           ),
         ),
-
+        ),
 //          new Stack(
 //            //alignment: const FractionalOffset(0.9, 0.1),//方法一
 //            children: <Widget>[
@@ -233,7 +235,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
 //          ]),
 //          SizedBox(height: 2, child:Container(color: Theme.of(context).primaryColor)),
 
-        new CustomScrollView(
+        SliverToBoxAdapter(
           child:
             new Container(
               height: 30,
@@ -261,12 +263,12 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                 ]
               )
             ),
-
-          ]
         ),
         //new ListView(),
-        new CustomScrollView(
-          child:
+    SliverToBoxAdapter(
+    child:
+
+
               new Container(
                   height: 30,
                   child: Stack(
@@ -293,9 +295,8 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                       ]
                   )
               ),
-              //new ListView()
-            ]
-        ),
+    ),//new ListView()
+        
         //new listComp.ListRefresh(getIndexListData,makeCard),
           //child: new List(),
           //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
