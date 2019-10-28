@@ -306,7 +306,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
           (_,index)=>Container(
             child: listComp.ListRefresh(getIndexListData,makeCard)
           ),
-          childCount: 15
+          childCount: 5
         ),
       ) //new listComp.ListRefresh(getIndexListData,makeCard),
       ]
