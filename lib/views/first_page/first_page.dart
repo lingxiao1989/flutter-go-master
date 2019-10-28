@@ -300,14 +300,15 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
         //new listComp.ListRefresh(getIndexListData,makeCard),
           //child: new List(),
           //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
-    new SliverToBoxAdapter(
-      child: new Expanded(
-          //child: new List(),
-          //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
+      SliverFixedExtentList(
+        itemExtent: 15,
+        delegate: SliverChildBuilderDelegate(
+          (_,index)=>Container(
             child: listComp.ListRefresh(getIndexListData,makeCard)
-      ),
-    )
-        //new listComp.ListRefresh(getIndexListData,makeCard),
+          ),
+          childCount: 15
+        ),
+      ) //new listComp.ListRefresh(getIndexListData,makeCard),
       ]
     );
   }
