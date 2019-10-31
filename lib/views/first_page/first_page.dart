@@ -264,51 +264,40 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
               )
             ),
         ),
-        //new ListView(),
-    SliverToBoxAdapter(
-    child:
+        listComp.ListRefresh(getIndexListData,makeCard),
+        SliverToBoxAdapter(
+          child: new Container(
+            height: 30,
+            child: Stack(
+              children: <Widget>[
+                PositionedDirectional(
+                  top: 0,
+                  start: 15,
+                  child:
+                  SizedBox(
+                    width: 199,
+                    height: 28,
+                    child: Text(
+                      "Recommended Cards",
+                      style: const TextStyle(
+                        color:	const Color(0xff042c5c),
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "ProximaNova",
+                        fontStyle:	FontStyle.normal,
+                        fontSize: 20.0
+                      )
+                    )
+                  ),
+                ),
+              ]
+            )
+          ),
+        ),//new ListView()
 
-
-              new Container(
-                  height: 30,
-                  child: Stack(
-                      children: <Widget>[
-                        PositionedDirectional(
-                          top: 0,
-                          start: 15,
-                          child:
-                          SizedBox(
-                              width: 199,
-                              height: 28,
-                              child:	 Text(
-                                  "Recommended Cards",
-                                  style: const TextStyle(
-                                      color:	const Color(0xff042c5c),
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: "ProximaNova",
-                                      fontStyle:	FontStyle.normal,
-                                      fontSize: 20.0
-                                  )
-                              )
-                          ),
-                        ),
-                      ]
-                  )
-              ),
-    ),//new ListView()
-        
         //new listComp.ListRefresh(getIndexListData,makeCard),
           //child: new List(),
           //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
-      SliverFixedExtentList(
-        itemExtent: 15,
-        delegate: SliverChildBuilderDelegate(
-          (_,index)=>Container(
-            child: listComp.ListRefresh(getIndexListData,makeCard)
-          ),
-          childCount: 5
-        ),
-      ) //new listComp.ListRefresh(getIndexListData,makeCard),
+        listComp.ListRefresh(getIndexListData,makeCard),
       ]
     );
   }

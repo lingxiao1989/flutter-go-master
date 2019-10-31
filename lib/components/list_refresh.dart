@@ -154,28 +154,30 @@ class _ListRefreshState extends State<ListRefresh> {
   @override
   Widget build(BuildContext context) {
     return new RefreshIndicator(
-      child: ListView.builder(
-        itemCount: items.length + 1,
-        itemBuilder: (context, index) {
-          if (index == 0 && index != items.length) {
-            if(widget.headerView is Function){
-              return widget.headerView();
-            }else {
-              return Container(height: 0);
+      child: SliverFixedExtentList(
+        itemExtent: 85,
+        delegate: SliverChildBuilderDelegate(
+          ((context,index){
+            if (index == 0 && index != items.length) {
+              if(widget.headerView is Function){
+                return widget.headerView();
+              }else {
+                return Container(height: 0);
+              }
             }
-          }
-          if (index == items.length) {
-            //return _buildLoadText();
-            return _buildProgressIndicator();
-          } else {
-            //print('itemsitemsitemsitems:${items[index].title}');
-            //return ListTile(title: Text("Index${index}:${items[index].title}"));
-            if (widget.renderItem is Function) {
-              return widget.renderItem(index, items[index]);
+            if (index == items.length) {
+              //return _buildLoadText();
+              return _buildProgressIndicator();
+            } else {
+              //print('itemsitemsitemsitems:${items[index].title}');
+              //return ListTile(title: Text("Index${index}:${items[index].title}"));
+              if (widget.renderItem is Function) {
+                return widget.renderItem(index, items[index]);
+              }
             }
-          }
-        },
-        controller: _scrollController,
+          }),
+          childCount: items.length
+        )
       ),
       onRefresh: _handleRefresh,
     );
