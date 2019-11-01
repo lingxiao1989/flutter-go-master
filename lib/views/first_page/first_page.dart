@@ -121,107 +121,147 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
       slivers: <Widget>[
         SliverToBoxAdapter(
           child: new Container(
-          height: 170,
-          color: const Color(0xff0047cc),
-          child: Stack(
-            children: <Widget>[
-              PositionedDirectional(
-                top: 10,
-                start: 15,
-                child: SizedBox(
+            height: 170,
+            color: const Color(0xff0047cc),
+            child: Stack(
+              children: <Widget>[
+                PositionedDirectional(
+                  top: 10,
+                  start: 15,
+                  child: SizedBox(
                     width: 106,
                     height: 28,
                     child: Text(
-                        "Categories",
-                        style: const TextStyle(
-                            color:	const Color(0xffffffff),
-                            fontWeight: FontWeight.w900,
-                            fontFamily: "Avenir",
-                            fontStyle:	FontStyle.normal,
-                            fontSize: 20.0
-                        )
+                      "Categories",
+                      style: const TextStyle(
+                        color:	const Color(0xffffffff),
+                        fontWeight: FontWeight.w900,
+                        fontFamily: "Avenir",
+                        fontStyle:	FontStyle.normal,
+                        fontSize: 20.0
+                      )
                     )
+                  ),
                 ),
-              ),
-              PositionedDirectional(
-                start: 0,
-                end: 0,
-                bottom: -1,
-                child: Container(
+                PositionedDirectional(
+                  start: 0,
+                  end: 0,
+                  bottom: -1,
+                  child: Container(
                     height: 40,
                     color: const Color(0xfff8f9f9)
-                ),
-              ),
-              PositionedDirectional(
-                bottom: 5,
-                start: 15,
-                end: 15,
-                child: Container(
-                  width: 343,
-                  height: 113,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10)
-                    ),
-                    boxShadow: [
-                      BoxShadow(color: Colors.grey[300], offset: Offset(1, 1), blurRadius: 1),
-                      BoxShadow(color: Colors.grey[300], offset: Offset(-1, 1), blurRadius: 1)
-                    ],
-                    color: const Color(0xffffffff)
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 49, left: 16),
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      primary: true,
+                ),
+                PositionedDirectional(
+                  bottom: 5,
+                  start: 15,
+                  end: 15,
+                  child: Container(
+                    width: 343,
+                    height: 113,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10)
+                      ),
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey[300], offset: Offset(1, 1), blurRadius: 1),
+                        BoxShadow(color: Colors.grey[300], offset: Offset(-1, 1), blurRadius: 1)
+                      ],
+                      color: const Color(0xffffffff)
+                    ),
+                    child: Stack(
                       children: <Widget>[
-                        _TextImgWidget(
-                        //'找电影',
-                        'assets/images/Cate1.png',
-                        //                tabCallBack: () {
-                        //                  print('点击找电影');
-                        //                  Router.push(context, Router.searchPage, '找电影');
-                        //                },
+                        PositionedDirectional(
+                          top: 0,
+                          start: 0,
+                          child: SizedBox(
+                            width: 18,
+                            height: 17,
+                            child: Text(
+                              "for",
+                              style: const TextStyle(
+                                color:  const Color(0xff77869e),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 14.0
+                              )
+                            )
+                          )
                         ),
-                        new Container(
-                          width: 20,
+                        PositionedDirectional(
+                          top: 0,
+                          start: 0,
+                          child: SizedBox(
+                            width: 156,
+                            height: 17,
+                            child: Text(
+                              "Non-bonused Spending",
+                              style: const TextStyle(
+                                color:  const Color(0xff042c5c),
+                                fontWeight: FontWeight.w700,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 14.0
+                              )
+                            )
+                          )
                         ),
-                        _TextImgWidget(
-                        //'豆瓣榜单',
-                        'assets/images/Cate2.png',
-                        //                tabCallBack: () {
-                        //                  print('点击豆瓣榜单');
-                        //                  Router.push(context, Router.searchPage, '豆瓣榜单');
-                        //                },
-                        ),
-                        new Container(
-                          width: 20,
-                        ),
-                        _TextImgWidget(
-                        //'豆瓣猜',
-                        'assets/images/Cate3.png',
-                        //                tabCallBack: () {
-                        //                  Router.push(context, Router.searchPage, '豆瓣猜');
-                        //                },
-                        ),
-                        new Container(
-                          width: 20,
-                        ),
-                        _TextImgWidget(
-                        //'豆瓣片单',
-                        'assets/images/Cate4.png',
-                        //                tabCallBack: () {
-                        //                  Router.push(context, Router.searchPage, '豆瓣片单');
-                        //                },
+                        Padding(
+                          padding: EdgeInsets.only(top: 49, left: 16),
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            primary: true,
+                            children: <Widget>[
+                              _TextImgWidget(
+                              //'找电影',
+                              'assets/images/Cate1.png',
+                              //                tabCallBack: () {
+                              //                  print('点击找电影');
+                              //                  Router.push(context, Router.searchPage, '找电影');
+                              //                },
+                              ),
+                              new Container(
+                                width: 20,
+                              ),
+                              _TextImgWidget(
+                              //'豆瓣榜单',
+                              'assets/images/Cate2.png',
+                              //                tabCallBack: () {
+                              //                  print('点击豆瓣榜单');
+                              //                  Router.push(context, Router.searchPage, '豆瓣榜单');
+                              //                },
+                              ),
+                              new Container(
+                                width: 20,
+                              ),
+                              _TextImgWidget(
+                              //'豆瓣猜',
+                              'assets/images/Cate3.png',
+                              //                tabCallBack: () {
+                              //                  Router.push(context, Router.searchPage, '豆瓣猜');
+                              //                },
+                              ),
+                              new Container(
+                                width: 20,
+                              ),
+                              _TextImgWidget(
+                              //'豆瓣片单',
+                              'assets/images/Cate4.png',
+                              //                tabCallBack: () {
+                              //                  Router.push(context, Router.searchPage, '豆瓣片单');
+                              //                },
+                              )
+                            ],
+                          )
                         )
                       ],
                     )
-                  )
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
         ),
 //          new Stack(
 //            //alignment: const FractionalOffset(0.9, 0.1),//方法一
