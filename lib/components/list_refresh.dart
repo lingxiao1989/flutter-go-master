@@ -159,11 +159,11 @@ class _ListRefreshState extends State<ListRefresh> {
         delegate: SliverChildBuilderDelegate(
           ((context,index){
             if (index == 0 && index != items.length) {
-              if(widget.headerView is Function){
-                return widget.headerView();
-              }else {
+              //if(widget.headerView is Function){
+                //return widget.headerView();
+              //}else {
                 return Container(height: 0);
-              }
+              //}
             }
             if (index == items.length) {
               //return _buildLoadText();
