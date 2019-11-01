@@ -40,10 +40,10 @@ class _MyHomePageState extends State<AppPage>
   List<Widget> _list = List();
   int _currentIndex = 0;
   static List tabData = [
-    {'text': 'Spending', 'icon': Icon(Icons.send)},
-    {'text': 'Wallet', 'icon': Icon(Icons.credit_card)},
-    {'text': 'Benefits', 'icon': Icon(Icons.save)},
-    {'text': 'Tasks', 'icon': Icon(Icons.list)},
+    {'text': 'Values', 'icon': 'assets/images/Values.png'},
+    {'text': 'Wallet', 'icon': 'assets/images/Values.png'},
+    {'text': 'Benefits', 'icon': 'assets/images/Benefits.png'},
+    {'text': 'Tasks', 'icon': 'assets/images/Tasks.png'},
     {'text': 'Others', 'icon': Icon(Icons.money_off)},
   ];
 
