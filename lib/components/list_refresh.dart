@@ -12,9 +12,8 @@ import 'package:flutter/material.dart';
 class ListRefresh extends StatefulWidget {
   final renderItem;
   final requestApi;
-  final headerView;
 
-  const ListRefresh([this.requestApi, this.renderItem, this.headerView]) : super();
+  const ListRefresh([this.requestApi, this.renderItem]) : super();
 
   @override
   State<StatefulWidget> createState() => _ListRefreshState();
@@ -158,13 +157,13 @@ class _ListRefreshState extends State<ListRefresh> {
         itemExtent: 85,
         delegate: SliverChildBuilderDelegate(
           ((context,index){
-            if (index == 0 && index != items.length) {
+            //if (index == 0 && index != items.length) {
               //if(widget.headerView is Function){
                 //return widget.headerView();
               //}else {
-                return Container(height: 0);
+                //return Container(height: 0);
               //}
-            }
+            //}
             if (index == items.length) {
               //return _buildLoadText();
               return _buildProgressIndicator();

@@ -40,10 +40,10 @@ class _MyHomePageState extends State<AppPage>
   List<Widget> _list = List();
   int _currentIndex = 0;
   static List tabData = [
-    {'text': 'Values', 'icon': 'assets/images/Values.png'},
-    {'text': 'Wallet', 'icon': 'assets/images/Values.png'},
-    {'text': 'Benefits', 'icon': 'assets/images/Benefits.png'},
-    {'text': 'Tasks', 'icon': 'assets/images/Tasks.png'},
+    {'text': 'Values', 'icon': ImageIcon(AssetImage('assets/images/Values.png'))},
+    {'text': 'Wallet', 'icon': ImageIcon(AssetImage('assets/images/Wallet.png'))},
+    {'text': 'Benefits', 'icon': ImageIcon(AssetImage('assets/images/Benefits.png'))},
+    {'text': 'Tasks', 'icon': ImageIcon(AssetImage('assets/images/Tasks.png'))},
     {'text': 'Others', 'icon': Icon(Icons.money_off)},
   ];
 
@@ -144,7 +144,7 @@ class _MyHomePageState extends State<AppPage>
         //fixed：固定
         type: BottomNavigationBarType.fixed,
 
-        fixedColor: Color(0xFFC91B3A),
+        fixedColor: Color(0xff0047cc),
       ),
     );
   }

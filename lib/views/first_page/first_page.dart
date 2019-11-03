@@ -113,7 +113,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
         ],
       );
   }
-
+  String dropdownValue = 'Non-bonused Spending';
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -172,8 +172,8 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     child: Stack(
                       children: <Widget>[
                         PositionedDirectional(
-                          top: 0,
-                          start: 0,
+                          top: 15,
+                          start: 15,
                           child: SizedBox(
                             width: 18,
                             height: 17,
@@ -190,21 +190,36 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                           )
                         ),
                         PositionedDirectional(
-                          top: 0,
-                          start: 0,
+                          top: 15,
+                          start: 40,
                           child: SizedBox(
-                            width: 156,
+                            width: 200,
                             height: 17,
-                            child: Text(
-                              "Non-bonused Spending",
-                              style: const TextStyle(
-                                color:  const Color(0xff042c5c),
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "ProximaNova",
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 14.0
-                              )
-                            )
+                            child: DropdownButton<String>(
+                              value: dropdownValue,
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  dropdownValue = newValue;
+                                });
+                              },
+                              items: <String>['Non-bonused Spending', 'Restaurant', 'Air Travel', 'Four']
+                                  .map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: const TextStyle(
+                                      color:  const Color(0xff042c5c),
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "ProximaNova",
+                                      fontStyle:  FontStyle.normal,
+                                      fontSize: 14.0
+                                    )
+                                  ),
+                                );
+                              })
+                                  .toList(),
+                            ),
                           )
                         ),
                         Padding(
