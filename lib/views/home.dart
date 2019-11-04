@@ -44,7 +44,7 @@ class _MyHomePageState extends State<AppPage>
     {'text': 'Wallet', 'icon': ImageIcon(AssetImage('assets/images/Wallet.png'))},
     {'text': 'Benefits', 'icon': ImageIcon(AssetImage('assets/images/Benefits.png'))},
     {'text': 'Tasks', 'icon': ImageIcon(AssetImage('assets/images/Tasks.png'))},
-    {'text': 'Others', 'icon': Icon(Icons.money_off)},
+    {'text': 'Others', 'icon': ImageIcon(AssetImage('assets/images/Offers.png'))},
   ];
 
   List<BottomNavigationBarItem> _myTabs = [];
