@@ -21,10 +21,14 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _unKnow;
   GlobalKey<DisclaimerMsgState> key;
-
+  var _categories=['Non-bonused Spending', 'Restaurant', 'Groceries', 'Gas Station', 'Air Travel'];
+  var _currentChoice=0;
   @override
   bool get wantKeepAlive => true;
 
+  setCurrentCategory(int index){
+    setState(()=>_currentChoice=index);
+  }
 
   @override
   void initState() {
@@ -48,6 +52,23 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
     }
   }
 
+  _showBottomSheet(BuildContext context) {
+    showBottomSheet(
+      context: context,
+      builder: (context) => ListView(
+        // 生成一个列表选择器
+          children: List.generate(
+            _categories.length,
+              (index) => InkWell(
+              child: Container(alignment: Alignment.center, height: 60.0, child: Text('Item ${_categories[index]}')),
+              onTap: () {
+                setCurrentCategory(index);
+                print('tapped item ${_categories[index]}');
+                Navigator.pop(context);
+              }),
+          )),
+    );
+  }
 
   Future<Map> getIndexListData([Map<String, dynamic> params]) async {
     const juejin_flutter = 'https://timeline-merger-ms.juejin.im/v1/get_tag_entry?src=web&tagId=5a96291f6fb9a0535b535438';
@@ -202,7 +223,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                                   dropdownValue = newValue;
                                 });
                               },
-                              items: <String>['Non-bonused Spending', 'Restaurant', 'Air Travel', 'Four']
+                              items: _categories
                                   .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
