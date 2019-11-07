@@ -56,17 +56,72 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
     showBottomSheet(
       context: context,
       builder: (context) => ListView(
-        // 生成一个列表选择器
-          children: List.generate(
-            _categories.length,
-              (index) => InkWell(
-              child: Container(alignment: Alignment.center, height: 60.0, child: Text('Item ${_categories[index]}')),
+      // 生成一个列表选择器
+        children: List.generate(
+          _categories.length+1,
+          (index) {
+            if(index==0){
+              return new Container(
+                height:75,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                          'Select a category',
+                          style: const TextStyle(
+                              color:  const Color(0xff042c5c),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          )
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        icon: Icon(Icons.clear),
+                        color: const Color(0xff042c5c),
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                      )
+                    )
+                  ],
+                )
+              );
+            }
+            index-=1;
+            return new InkWell(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                height: 60.0,
+                child: Row(
+                  children: <Widget>[
+                    const SizedBox(width: 20.0),
+                    Text(
+                      '${_categories[index]}',
+                      style: const TextStyle(
+                        color:  const Color(0xff042c5c),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "ProximaNova",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
+                      )
+                    )
+                  ],
+                )
+              ),
               onTap: () {
                 setCurrentCategory(index);
                 print('tapped item ${_categories[index]}');
                 Navigator.pop(context);
-              }),
-          )),
+              }
+            );
+          }
+        )
+      )
     );
   }
 
@@ -134,7 +189,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
         ],
       );
   }
-  String dropdownValue = 'Non-bonused Spending';
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -193,7 +248,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     child: Stack(
                       children: <Widget>[
                         PositionedDirectional(
-                          top: 15,
+                          top: 16,
                           start: 15,
                           child: SizedBox(
                             width: 18,
@@ -211,37 +266,36 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                           )
                         ),
                         PositionedDirectional(
-                          top: 15,
-                          start: 40,
-                          child: SizedBox(
-                            width: 200,
-                            height: 17,
-                            child: DropdownButton<String>(
-                              value: dropdownValue,
-                              onChanged: (String newValue) {
-                                setState(() {
-                                  dropdownValue = newValue;
-                                });
-                              },
-                              items: _categories
-                                  .map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: const TextStyle(
-                                      color:  const Color(0xff042c5c),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "ProximaNova",
-                                      fontStyle:  FontStyle.normal,
-                                      fontSize: 14.0
-                                    )
-                                  ),
-                                );
-                              })
-                                  .toList(),
-                            ),
-                          )
+                          top: 0,
+                          start: 35,
+                          child:(Builder
+                            (builder:
+                              (context) => FlatButton(
+                                onPressed: () => _showBottomSheet(context),
+                                padding: EdgeInsets.all(0.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                        _categories[_currentChoice],
+                                        style: const TextStyle(
+                                            color:  const Color(0xff042c5c),
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: "ProximaNova",
+                                            fontStyle:  FontStyle.normal,
+                                            fontSize: 14.0
+                                        )
+                                    ),
+                                    const SizedBox(width: 2.0),
+                                    const Icon(
+                                      Icons.expand_more,
+                                      color: const Color(0xff77869e),
+                                      size: 15.0
+                                    ),
+                                  ],
+                                ),
+                              )
+                            )
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 49, left: 16),
@@ -257,9 +311,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                               //                  Router.push(context, Router.searchPage, '找电影');
                               //                },
                               ),
-                              new Container(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20.0),
                               _TextImgWidget(
                               //'豆瓣榜单',
                               'assets/images/Cate2.png',
@@ -268,9 +320,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                               //                  Router.push(context, Router.searchPage, '豆瓣榜单');
                               //                },
                               ),
-                              new Container(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20.0),
                               _TextImgWidget(
                               //'豆瓣猜',
                               'assets/images/Cate3.png',
@@ -278,9 +328,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                               //                  Router.push(context, Router.searchPage, '豆瓣猜');
                               //                },
                               ),
-                              new Container(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20.0),
                               _TextImgWidget(
                               //'豆瓣片单',
                               'assets/images/Cate4.png',
