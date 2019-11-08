@@ -1,14 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_go/widgets/elements/Form/Button/FlatButton/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_go/components/list_view_item.dart';
 import 'package:flutter_go/components/list_refresh.dart' as listComp;
 import 'package:flutter_go/components/pagination.dart';
-import 'package:flutter_go/views/first_page/first_page_item.dart';
+import 'package:flutter_go/views/values_page/first_page_item.dart';
 import 'package:flutter_go/components/disclaimer_msg.dart';
 import 'package:flutter_go/utils/net_utils.dart';
+import 'package:flutter_go/model/category.dart';
 
 // ValueKey<String> key;
 
@@ -21,7 +23,16 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _unKnow;
   GlobalKey<DisclaimerMsgState> key;
-  var _categories=['Non-bonused Spending', 'Restaurant', 'Groceries', 'Gas Station', 'Air Travel'];
+  List<CategoryModel> Categories =[];
+  List<dynamic> _categoryList = [
+    {'id': 0, 'categoryName':'Non-bonused Spending', 'iconImage':'assets/images/Cate2.png'},
+    {'id': 1, 'categoryName':'Restaurant', 'iconImage':'assets/images/restaurant.png'},
+    {'id': 2, 'categoryName':'Groceries', 'iconImage':'assets/images/Cate4.png'},
+    {'id': 3, 'categoryName':'Gas Station', 'iconImage':'assets/images/Cate3.png'},
+    {'id': 4, 'categoryName':'Air Travel', 'iconImage':'assets/images/Cate1.png'},
+    {'id': 5, 'categoryName':'a test', 'iconImage': null},
+  ];
+
   var _currentChoice=0;
   @override
   bool get wantKeepAlive => true;
@@ -50,6 +61,9 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
         });
       });
     }
+    _categoryList.forEach((item) {
+      Categories.add(CategoryModel.fromJson(item));
+    });
   }
 
   _showBottomSheet(BuildContext context) {
@@ -58,7 +72,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
       builder: (context) => ListView(
       // 生成一个列表选择器
         children: List.generate(
-          _categories.length+1,
+          Categories.length+1,
           (index) {
             if(index==0){
               return new Container(
@@ -101,7 +115,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                   children: <Widget>[
                     const SizedBox(width: 20.0),
                     Text(
-                      '${_categories[index]}',
+                      '${Categories[index].categoryName}',
                       style: const TextStyle(
                         color:  const Color(0xff042c5c),
                         fontWeight: FontWeight.w400,
@@ -115,7 +129,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
               ),
               onTap: () {
                 setCurrentCategory(index);
-                print('tapped item ${_categories[index]}');
+                print('tapped item ${Categories[index].categoryName}');
                 Navigator.pop(context);
               }
             );
@@ -193,11 +207,12 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    // super.initState();
     return new CustomScrollView(
       slivers: <Widget>[
         SliverToBoxAdapter(
           child: new Container(
-            height: 170,
+            height: 180,
             color: const Color(0xff0047cc),
             child: Stack(
               children: <Widget>[
@@ -233,8 +248,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                   start: 15,
                   end: 15,
                   child: Container(
-                    width: 343,
-                    height: 113,
+                    height: 120,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10)
@@ -268,22 +282,21 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         PositionedDirectional(
                           top: 0,
                           start: 35,
-                          child:(Builder
-                            (builder:
+                          child:(Builder (builder:
                               (context) => FlatButton(
                                 onPressed: () => _showBottomSheet(context),
                                 padding: EdgeInsets.all(0.0),
                                 child: Row(
                                   children: <Widget>[
                                     Text(
-                                        _categories[_currentChoice],
-                                        style: const TextStyle(
-                                            color:  const Color(0xff042c5c),
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "ProximaNova",
-                                            fontStyle:  FontStyle.normal,
-                                            fontSize: 14.0
-                                        )
+                                      Categories[_currentChoice].categoryName,
+                                      style: const TextStyle(
+                                        color:  const Color(0xff042c5c),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "ProximaNova",
+                                        fontStyle:  FontStyle.normal,
+                                        fontSize: 14.0
+                                      )
                                     ),
                                     const SizedBox(width: 2.0),
                                     const Icon(
@@ -298,45 +311,69 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 49, left: 16),
+                          padding: EdgeInsets.only(top: 36, left: 15),
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             primary: true,
-                            children: <Widget>[
-                              _TextImgWidget(
-                              //'找电影',
-                              'assets/images/Cate1.png',
-                              //                tabCallBack: () {
-                              //                  print('点击找电影');
-                              //                  Router.push(context, Router.searchPage, '找电影');
-                              //                },
-                              ),
-                              const SizedBox(width: 20.0),
-                              _TextImgWidget(
-                              //'豆瓣榜单',
-                              'assets/images/Cate2.png',
-                              //                tabCallBack: () {
-                              //                  print('点击豆瓣榜单');
-                              //                  Router.push(context, Router.searchPage, '豆瓣榜单');
-                              //                },
-                              ),
-                              const SizedBox(width: 20.0),
-                              _TextImgWidget(
-                              //'豆瓣猜',
-                              'assets/images/Cate3.png',
-                              //                tabCallBack: () {
-                              //                  Router.push(context, Router.searchPage, '豆瓣猜');
-                              //                },
-                              ),
-                              const SizedBox(width: 20.0),
-                              _TextImgWidget(
-                              //'豆瓣片单',
-                              'assets/images/Cate4.png',
-                              //                tabCallBack: () {
-                              //                  Router.push(context, Router.searchPage, '豆瓣片单');
-                              //                },
-                              )
-                            ],
+                            children: List.generate(
+                              Categories.length,
+                              (index) {
+                                if (Categories[index].iconImage == null) {
+                                  return Container();
+                                }
+                                if (index<Categories.length-1){
+                                  return new Container(
+                                      width: 70,
+                                      height: 60,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Container(
+                                              width: 60,
+                                              height: 60,
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                                                  color: const Color(0xfff5f6f8)
+                                              ),
+                                              child: FlatButton(
+                                                onPressed: () => setCurrentCategory(index),
+                                                child: Image.asset(
+                                                    Categories[index].iconImage,
+                                                    width: 60,
+                                                    height: 60,
+                                                ),
+                                              )
+                                          )
+                                        ],
+                                      )
+                                  );
+                                }
+                                return new Container(
+                                  width: 60,
+                                  height: 60,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                                          color: const Color(0xfff5f6f8)
+                                        ),
+                                        child: FlatButton(
+                                          onPressed: () => setCurrentCategory(index),
+                                          child: Image.asset(
+                                            Categories[index].iconImage,
+                                            width: 60,
+                                            height: 60,
+                                          ),
+                                        )
+                                      )
+                                    ],
+                                  )
+                                );
+                              }
+                            )
                           )
                         )
                       ],
@@ -347,55 +384,43 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
             ),
           ),
         ),
-//          new Stack(
-//            //alignment: const FractionalOffset(0.9, 0.1),//方法一
-//            children: <Widget>[
-//            Pagination(),
-//            Positioned(//方法二
-//              top: 10.0,
-//              left: 0.0,
-//              child: DisclaimerMsg(key:key,pWidget:this)
-//            ),
-//          ]),
-//          SizedBox(height: 2, child:Container(color: Theme.of(context).primaryColor)),
 
         SliverToBoxAdapter(
-          child:
-            new Container(
-              height: 30,
-              child: Stack(
-                children: <Widget>[
-                  PositionedDirectional(
-                    top: 0,
-                    start: 15,
-                    child:
-                    SizedBox(
-                      width: 146,
-                      height: 28,
-                      child:	 Text(
-                        "Available Cards",
-                        style: const TextStyle(
-                        color:	const Color(0xff042c5c),
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "ProximaNova",
-                        fontStyle:	FontStyle.normal,
-                        fontSize: 20.0
-                        )
+          child: new Container(
+            height: 40,
+            child: Stack(
+              children: <Widget>[
+                PositionedDirectional(
+                  top: 10,
+                  start: 15,
+                  child:
+                  SizedBox(
+                    width: 146,
+                    height: 28,
+                    child:	 Text(
+                      "Available Cards",
+                      style: const TextStyle(
+                      color:	const Color(0xff042c5c),
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "ProximaNova",
+                      fontStyle:	FontStyle.normal,
+                      fontSize: 20.0
                       )
-                    ),
+                    )
                   ),
-                ]
-              )
-            ),
+                ),
+              ]
+            )
+          ),
         ),
         listComp.ListRefresh(getIndexListData,makeCard),
         SliverToBoxAdapter(
           child: new Container(
-            height: 30,
+            height: 40,
             child: Stack(
               children: <Widget>[
                 PositionedDirectional(
-                  top: 0,
+                  top: 10,
                   start: 15,
                   child:
                   SizedBox(
@@ -427,59 +452,3 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
   }
 }
 
-
-class _TextImgWidget extends StatelessWidget {
-  //final String text;
-  final String imgAsset;
-  //final TapCallback tabCallBack;
-
-  _TextImgWidget(
-      //this.text,
-      this.imgAsset, {
-        Key key,
-        //this.tabCallBack,
-      }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-//      onTap: () {
-//        if (tabCallBack != null) {
-//          tabCallBack();
-//        }
-//      },
-      child: Column(
-        children: <Widget>[
-          new Container(
-            width: 48,
-            height: 48,
-            padding: EdgeInsets.only(left: 10, right: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                    Radius.circular(8)
-                ),
-                color: const Color(0xfff5f6f8)
-            ),
-            child: Image.asset(
-              imgAsset,
-              width: 45,
-              height: 45,
-
-            ),
-            /*Text(
-              text,
-              style: TextStyle(
-                  fontSize: 13,
-                  color: Color.fromARGB(
-                    255,
-                    128,
-                    128,
-                    128,
-                  )),
-            )*/
-          )
-        ],
-      ),
-    );
-  }
-}

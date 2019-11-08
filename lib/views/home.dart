@@ -8,8 +8,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_go/utils/shared_preferences.dart';
-import 'package:flutter_go/views/first_page/first_page.dart';
-import 'package:flutter_go/views/first_page/main_page.dart';
+import 'package:flutter_go/views/values_page/values_contents_page.dart';
+import 'package:flutter_go/views/values_page/values_main_page.dart';
+import 'package:flutter_go/views/wallet_page/wallet_contents_page.dart';
+import 'package:flutter_go/views/wallet_page/wallet_main_page.dart';
 import 'package:flutter_go/views/widget_page/widget_page.dart';
 import 'package:flutter_go/views/welcome_page/fourth_page.dart';
 import 'package:flutter_go/views/collection_page/collection_page.dart';
@@ -62,8 +64,8 @@ class _MyHomePageState extends State<AppPage>
       ));
     }
     _list
-      ..add(FirstPage())
-      ..add(MainPage())
+      ..add(ValuesMainPage())
+      ..add(WalletMainPage())
       ..add(WidgetPage(Provider.db))
       ..add(CollectionPage())
       ..add(FourthPage());

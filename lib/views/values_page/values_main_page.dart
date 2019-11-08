@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import './first_page.dart';
+import 'package:flutter_go/components/main_app_bar.dart';
+import './values_contents_page.dart';
 import './sub_page.dart';
-import './main_app_bar.dart';
+
 import './search_page.dart';
 
 class _Page {
@@ -17,7 +18,7 @@ final List<_Page> _allPages = <_Page>[
   _Page('Award Ticket'),
 ];
 
-class MainPage extends StatelessWidget {
+class ValuesMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("MainPagess build......");
@@ -77,7 +78,7 @@ class TabBarViewLayout extends StatelessWidget {
         return FirstPage();
         break;
       case 'Award Night':
-        return FirstPage();
+        return Container();
         break;
       case 'Award Ticket':
         return SubPage();
