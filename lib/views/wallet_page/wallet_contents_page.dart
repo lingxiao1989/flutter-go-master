@@ -223,7 +223,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     width: 106,
                     height: 28,
                     child: Text(
-                      "Categories",
+                      "Summary",
                       style: const TextStyle(
                         color:	const Color(0xffffffff),
                         fontWeight: FontWeight.w900,
@@ -262,122 +262,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     ),
                     child: Stack(
                       children: <Widget>[
-                        PositionedDirectional(
-                          top: 16,
-                          start: 15,
-                          child: SizedBox(
-                            width: 18,
-                            height: 17,
-                            child: Text(
-                              "for",
-                              style: const TextStyle(
-                                color:  const Color(0xff77869e),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "ProximaNova",
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 14.0
-                              )
-                            )
-                          )
-                        ),
-                        PositionedDirectional(
-                          top: 0,
-                          start: 35,
-                          child:(Builder
-                            (builder:
-                              (context) => FlatButton(
-                                onPressed: () => _showBottomSheet(context),
-                                padding: EdgeInsets.all(0.0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(
-                                      Categories[_currentChoice].categoryName,
-                                      style: const TextStyle(
-                                        color:  const Color(0xff042c5c),
-                                        fontWeight: FontWeight.w700,
-                                        fontFamily: "ProximaNova",
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize: 14.0
-                                      )
-                                    ),
-                                    const SizedBox(width: 2.0),
-                                    const Icon(
-                                      Icons.expand_more,
-                                      color: const Color(0xff77869e),
-                                      size: 15.0
-                                    ),
-                                  ],
-                                ),
-                              )
-                            )
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 49, left: 16),
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            primary: true,
-                            children: List.generate(
-                              Categories.length,
-                              (index) {
-                                if (Categories[index].iconImage == null) {
-                                  return Container();
-                                }
-                                if (index<Categories.length-1){
-                                  return new Container(
-                                      width: 60,
-                                      height: 50,
-                                      child: Row(
-                                        children: <Widget>[
-                                          Container(
-                                              width: 50,
-                                              height: 50,
-                                              alignment: Alignment.centerLeft,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                                                  color: const Color(0xfff5f6f8)
-                                              ),
-                                              child: IconButton(
-                                                icon: ImageIcon(
-                                                  AssetImage(Categories[index].iconImage),
-                                                ),
-                                                onPressed: () {
-                                                  setCurrentCategory(index);
-                                                },
-                                              )
-                                          )
-                                        ],
-                                      )
-                                  );
-                                }
-                                return new Container(
-                                  width: 50,
-                                  height: 50,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                                          color: const Color(0xfff5f6f8)
-                                        ),
-                                        child: IconButton(
-                                          icon: ImageIcon(
-                                            AssetImage(Categories[index].iconImage),
-                                          ),
-                                          onPressed: () {
-                                            setCurrentCategory(index);
-                                          },
-                                        )
-                                      )
-                                    ],
-                                  )
-                                );
-                              }
-                            )
-                          )
-                        )
+
                       ],
                     )
                   ),
@@ -400,7 +285,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     width: 146,
                     height: 28,
                     child:	 Text(
-                      "Available Cards",
+                      "Credits Cards",
                       style: const TextStyle(
                       color:	const Color(0xff042c5c),
                       fontWeight: FontWeight.w600,
@@ -429,7 +314,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                     width: 199,
                     height: 28,
                     child: Text(
-                      "Recommended Cards",
+                      "Gift Cards & Vouchers",
                       style: const TextStyle(
                         color:	const Color(0xff042c5c),
                         fontWeight: FontWeight.w600,
