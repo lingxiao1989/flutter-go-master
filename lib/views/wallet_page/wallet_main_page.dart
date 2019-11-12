@@ -59,7 +59,7 @@ class TabBarViewLayout extends StatelessWidget {
     String labelId = page.labelId;
     switch (labelId) {
       case 'Cards':
-        return Container();
+        return SecondPage();
         break;
       case 'Programs':
         return Container();
