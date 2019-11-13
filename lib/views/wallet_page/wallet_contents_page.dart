@@ -161,6 +161,107 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                     ),
                     child: Stack(
                       children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              height: 30,
+                              width: 30,
+                              alignment: Alignment.centerLeft,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    "Total Cards",
+                                    style: const TextStyle(
+                                        color:  const Color(0xff77869e),
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "ProximaNova",
+                                        fontStyle:  FontStyle.normal,
+                                        fontSize: 11.0
+                                    )
+                                  ),
+                                  Text(
+                                    "10",
+                                    style: const TextStyle(
+                                        color:  const Color(0xff042c5c),
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "ProximaNova",
+                                        fontStyle:  FontStyle.normal,
+                                        fontSize: 16.0
+                                    )
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              width: 30,
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                      "Total Cards",
+                                      style: const TextStyle(
+                                          color:  const Color(0xff77869e),
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: "ProximaNova",
+                                          fontStyle:  FontStyle.normal,
+                                          fontSize: 11.0
+                                      )
+                                  ),
+                                  Text(
+                                      "10",
+                                      style: const TextStyle(
+                                          color:  const Color(0xff042c5c),
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "ProximaNova",
+                                          fontStyle:  FontStyle.normal,
+                                          fontSize: 16.0
+                                      )
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 30,
+                              width: 30,
+                              alignment: Alignment.centerRight,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                      "Total Cards",
+                                      style: const TextStyle(
+                                          color:  const Color(0xff77869e),
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: "ProximaNova",
+                                          fontStyle:  FontStyle.normal,
+                                          fontSize: 11.0
+                                      )
+                                  ),
+                                  Text(
+                                      "10",
+                                      style: const TextStyle(
+                                          color:  const Color(0xff042c5c),
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "ProximaNova",
+                                          fontStyle:  FontStyle.normal,
+                                          fontSize: 16.0
+                                      )
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+
+                          ],
+                        ),
 
                       ],
                     )
