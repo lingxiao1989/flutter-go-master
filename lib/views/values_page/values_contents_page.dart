@@ -11,6 +11,7 @@ import 'package:flutter_go/views/values_page/first_page_item.dart';
 import 'package:flutter_go/components/disclaimer_msg.dart';
 import 'package:flutter_go/utils/net_utils.dart';
 import 'package:flutter_go/model/category.dart';
+import 'package:flutter_go/event/event_bus.dart';
 
 // ValueKey<String> key;
 
@@ -130,6 +131,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
               onTap: () {
                 setCurrentCategory(index);
                 print('tapped item ${Categories[index].categoryName}');
+                eventBus.fire(ApplicationEvent(false));
                 Navigator.pop(context);
               }
             );
@@ -284,7 +286,10 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                           start: 35,
                           child:(Builder (builder:
                               (context) => FlatButton(
-                                onPressed: () => _showBottomSheet(context),
+                                onPressed: () {
+                                  eventBus.fire(ApplicationEvent(true));
+                                  _showBottomSheet(context);
+                                },
                                 padding: EdgeInsets.all(0.0),
                                 child: Row(
                                   children: <Widget>[
