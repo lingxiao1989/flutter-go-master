@@ -18,17 +18,42 @@ class ListViewItem extends StatelessWidget {
   const ListViewItem({Key key, this.itemPic, this.itemUrl, this.itemTitle, this.data})
       : super(key: key);
 
-
+  _showModalBottomSheet(BuildContext context, itemTitle) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => Container(
+          height: 425,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                  Radius.circular(10)
+              ),
+              color:  const Color(0x00000000),
+          ),
+          child: Column(
+            children: <Widget>[
+              Text(itemTitle),
+              Image.asset(
+               itemPic
+              ),
+              RaisedButton(
+                child: Text('Card Details'),
+              )
+            ],
+          )
+        )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      elevation: 4.0,
-      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      elevation: 1.0,
+      margin: new EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
       child: ListTile(
         onTap: () {
+          _showModalBottomSheet(context,itemTitle);
           // _launchURL(itemUrl, context);
-          Application.router.navigateTo(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri.encodeComponent(itemUrl)}');
+          //Application.router.navigateTo(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri.encodeComponent(itemUrl)}');
         },
         leading:Image.asset(
           //this.data.bank_pic

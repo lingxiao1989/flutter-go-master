@@ -190,7 +190,6 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
     return
       Column(
         children: <Widget>[
-
           Stack(
             //alignment: const FractionalOffset(0.9, 0.1),//方法一
               children: <Widget>[
@@ -240,7 +239,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                 PositionedDirectional(
                   start: 0,
                   end: 0,
-                  bottom: -1,
+                  bottom: 0,
                   child: Container(
                     height: 40,
                     color: const Color(0xfff8f9f9)
@@ -251,14 +250,13 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                   start: 15,
                   end: 15,
                   child: Container(
-                    height: 120,
+                    height: 125,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10)
                       ),
                       boxShadow: [
-                        BoxShadow(color: Colors.grey[300], offset: Offset(1, 1), blurRadius: 1),
-                        BoxShadow(color: Colors.grey[300], offset: Offset(-1, 1), blurRadius: 1)
+                        BoxShadow(color: Colors.grey[300], offset: Offset(0,1), blurRadius: 1)
                       ],
                       color: const Color(0xffffffff)
                     ),
@@ -268,7 +266,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                           top: 16,
                           start: 15,
                           child: SizedBox(
-                            width: 18,
+                            width: 20 ,
                             height: 17,
                             child: Text(
                               "for",
@@ -329,7 +327,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                                 }
                                 if (index<Categories.length-1){
                                   return new Container(
-                                      width: 70,
+                                      width: 75,
                                       height: 60,
                                       child: Row(
                                         children: <Widget>[
