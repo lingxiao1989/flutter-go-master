@@ -1,9 +1,10 @@
+import 'dart:async';
+import 'package:flutter_go/event/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_go/components/main_app_bar.dart';
 import './values_contents_page.dart';
 import './sub_page.dart';
-
 import './search_page.dart';
 
 class _Page {
@@ -17,8 +18,33 @@ final List<_Page> _allPages = <_Page>[
   _Page('Award Night'),
   _Page('Award Ticket'),
 ];
-
-class ValuesMainPage extends StatelessWidget {
+class ValuesMainPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyValuesPageState();
+  }
+}
+class _MyValuesPageState extends State<ValuesMainPage> {
+  StreamSubscription _popSheetSubscription;
+  bool _hideTitleBar=false;
+  @override
+  void initState(){
+    super.initState();
+    _popSheetSubscription = eventBus.on<ApplicationEvent>().listen((event) {
+      //缓存主题色
+      //_cacheColor(event.popSheetEvent);
+      //bool hideNavigationBar = AppColors.getColor(event.popSheetEvent);
+      print('popSheetEvent received');
+      setState(() {
+        _hideTitleBar = event.popSheetEvent;
+      });
+    });
+  }
+  @override
+  void dispose(){
+    super.dispose();
+    _popSheetSubscription.cancel();
+  }
   @override
   Widget build(BuildContext context) {
     print("MainPagess build......");
@@ -34,8 +60,11 @@ class ValuesMainPage extends StatelessWidget {
                   //),
                 //)
             //),
-            centerTitle: true,
-            title:  TabLayout(),
+              automaticallyImplyLeading: false,
+              centerTitle: true,
+              title: _hideTitleBar
+                ?SizedBox(height: 0.0)
+                :TabLayout(),
             //actions: <Widget>[
               //IconButton(icon:  Icon(Icons.search), onPressed: () {
                    // pushPage(context, SearchPage(), pageName: "SearchPage");})

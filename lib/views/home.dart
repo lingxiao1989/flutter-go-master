@@ -85,12 +85,13 @@ class _MyHomePageState extends State<AppPage>
         _hideNavigationBar = event.popSheetEvent;
       });
     });
-
   }
 
   @override
   void dispose() {
     super.dispose();
+    //取消订阅
+    _popSheetSubscription.cancel();
   }
 
   initSearchHistory() async {
