@@ -99,6 +99,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         icon: Icon(Icons.clear),
                         color: const Color(0xff042c5c),
                         onPressed: (){
+                          eventBus.fire(ApplicationEvent(false));
                           Navigator.pop(context);
                         },
                       )

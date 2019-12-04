@@ -40,9 +40,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool _hasLogin = false;
   bool _isLoading = true;
-  Color _primaryColor;
   StreamSubscription _colorSubscription;
-
   @override
   Future initState() {
     super.initState();
@@ -69,16 +67,6 @@ class _MyAppState extends State<MyApp> {
         _isLoading = false;
       });
       print('身份信息验证失败:$onError');
-    });
-    _setThemeColor();
-    //订阅eventbus
-    _colorSubscription = eventBus.on<ApplicationEvent>().listen((event) {
-      //缓存主题色
-      _cacheColor(event.popSheetEvent);
-      Color color = AppColors.getColor(event.colorStr);
-      setState(() {
-        _primaryColor = color;
-      });
     });
   }
 
@@ -134,26 +122,6 @@ class _MyAppState extends State<MyApp> {
       navigatorObservers: <NavigatorObserver>[Analytics.observer],
     );
   }
-
-  _cacheColor(String colorStr) async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    sp.setString("themeColorStr", colorStr);
-  }
-
-  Future<String> _getCacheColor(String colorKey) async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    String colorStr = sp.getString(colorKey);
-    return colorStr;
-  }
-
-  void _setThemeColor() async {
-    String cacheColorStr = await _getCacheColor("themeColorStr");
-    setState(() {
-      _primaryColor = AppColors.getColor(cacheColorStr);
-    });
-  }
-
-
 }
 
 void main() async {

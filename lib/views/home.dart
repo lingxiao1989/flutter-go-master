@@ -4,6 +4,7 @@
 /// Time: 11:16
 /// email: sanfan.hx@alibaba-inc.com
 /// target:  app首页
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -22,6 +23,7 @@ import 'package:flutter_go/widgets/index.dart';
 import 'package:flutter_go/components/search_input.dart';
 import 'package:flutter_go/model/search_history.dart';
 import 'package:flutter_go/resources/widget_name_to_icon.dart';
+import 'package:flutter_go/event/event_bus.dart';
 
 const int ThemeColor = 0xFFC91B3A;
 
@@ -34,6 +36,8 @@ class AppPage extends StatefulWidget {
 
 class _MyHomePageState extends State<AppPage>
     with SingleTickerProviderStateMixin {
+  bool _hideNavigationBar=false;
+  StreamSubscription _popSheetSubscription;
   SpUtil sp;
   WidgetControlModel widgetControl = new WidgetControlModel();
   SearchHistoryList searchHistoryList;
@@ -69,6 +73,19 @@ class _MyHomePageState extends State<AppPage>
       ..add(WidgetPage(Provider.db))
       ..add(CollectionPage())
       ..add(FourthPage());
+
+    //_setThemeColor();
+    //订阅eventbus
+    _popSheetSubscription = eventBus.on<ApplicationEvent>().listen((event) {
+      //缓存主题色
+      //_cacheColor(event.popSheetEvent);
+      //bool hideNavigationBar = AppColors.getColor(event.popSheetEvent);
+      print('popSheetEvent received');
+      setState(() {
+        _hideNavigationBar = event.popSheetEvent;
+      });
+    });
+
   }
 
   @override
@@ -136,18 +153,20 @@ class _MyHomePageState extends State<AppPage>
         index: _currentIndex,
         children: _list,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _myTabs,
-        //高亮  被点击高亮
-        currentIndex: _currentIndex,
-        //修改 页面
-        onTap: _itemTapped,
-        //shifting :按钮点击移动效果
-        //fixed：固定
-        type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: _hideNavigationBar
+        ? SizedBox()
+        : BottomNavigationBar(
+            items: _myTabs,
+            //高亮  被点击高亮
+            currentIndex: _currentIndex,
+            //修改 页面
+            onTap: _itemTapped,
+            //shifting :按钮点击移动效果
+            //fixed：固定
+            type: BottomNavigationBarType.fixed,
 
-        fixedColor: Color(0xff0047cc),
-      ),
+            fixedColor: Color(0xff0047cc),
+        ),
     );
   }
 
@@ -157,4 +176,23 @@ class _MyHomePageState extends State<AppPage>
       appBarTitle = tabData[index]['text'];
     });
   }
+/*
+  _cacheColor(String colorStr) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setString("themeColorStr", colorStr);
+  }
+
+  Future<String> _getCacheColor(String colorKey) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    String colorStr = sp.getString(colorKey);
+    return colorStr;
+  }
+
+  void _setThemeColor() async {
+    String cacheColorStr = await _getCacheColor("themeColorStr");
+    setState(() {
+      _primaryColor = AppColors.getColor(cacheColorStr);
+    });
+  }
+*/
 }
