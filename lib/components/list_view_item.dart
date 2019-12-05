@@ -1,4 +1,6 @@
-/// @Author: 一凨 
+import 'dart:typed_data';
+
+/// @Author: 一凨
 /// @Date: 2019-01-14 17:53:54 
 /// @Last Modified by: 一凨
 /// @Last Modified time: 2019-01-14 17:57:51
@@ -28,17 +30,169 @@ class ListViewItem extends StatelessWidget {
       ),
       context: context,
       builder: (context) =>  Column(
-          children: <Widget>[
-            Text(itemTitle),
-            Image.asset(
-             itemPic
-            ),
-            RaisedButton(
-              child: Text('Card Details'),
+          children:<Widget>[
+            Container(
+              height: 80,
+              child:Stack(
+                children:<Widget>[
+                  PositionedDirectional(
+                    top: 30,
+                    start: 15,
+                    end:15,
+                    child: Container(
+                      height: 25,
+                      child: Text(
+                        "American Express® Gold",
+                        style: const TextStyle(
+                            color:  const Color(0xff042c5c),
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        ),
+                        textAlign: TextAlign.center
+                      )
+                     ),
+                  ),
+                PositionedDirectional(
+                  top: 60,
+                  start: 15,
+                  end:15,
+                  child: Container(
+                    height: 19,
+                    child:  SizedBox(
+                      width: 268,
+                      height: 14,
+                      child:   Text(
+                          "1 Membership Reward Points ≈ 1.6¢ (August 2019)",
+                          style: const TextStyle(
+                              color:  const Color(0xff77869e),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 12.0
+                          ),
+                          textAlign: TextAlign.center
+                      )
+                    )
+                  )
+                ),
+                PositionedDirectional(
+                  top: 1,
+                  end: 1,
+                  child: IconButton(
+                    iconSize: 20,
+                    icon: Icon(Icons.clear),
+                    color: const Color(0xff042c5c),
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                  )
+                )
+              ],
             )
-          ],
-        )
+          ),
+          SizedBox(height: 30),
+          Image.asset(itemPic),
+          Container(
+            height: 100,
+            child:Stack(
+              children:<Widget>[
+                PositionedDirectional(
+                  top: 30,
+                  start: 30,
+                  child: Container(child:Row(
+                        children: <Widget>[
+                          Text(
+                            '4x',
+                            style: const TextStyle(
+                                color:  const Color(0xff042c5c),
+                                fontWeight: FontWeight.w700,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            ),
+                            textAlign: TextAlign.left
+                          ),
+                          SizedBox(width: 5.0),
+                          Text(
+                            'Groceries',
+                            style: const TextStyle(
+                                color:  const Color(0xff042c5c),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            ),
+                            textAlign: TextAlign.left
+                          ),
+                          Text(
+                              '6.4%',
+                              style: const TextStyle(
+                                  color:  const Color(0xff1bc773),
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "ProximaNova",
+                                  fontStyle:  FontStyle.normal,
+                                  fontSize: 16.0
+                              ),
+                              textAlign: TextAlign.right
+                          ),
+                        ],
+                      )
+                  )
 
+                ),
+              PositionedDirectional(
+                  top: 30,
+                  end: 30,
+                  child: Container(child:Row(
+                    children: <Widget>[
+                      Text(
+                          '6.4%',
+                          style: const TextStyle(
+                              color:  const Color(0xff1bc773),
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.right
+                      ),
+                    ],
+                  )
+                  ))
+              ]
+            )
+          ),
+          Container(
+            height: 60,
+            child:Stack(
+              children:<Widget>[
+                PositionedDirectional(
+                  start: 30,
+                  end:30,
+                  child: RaisedButton(
+                    color: const Color(0xff0047cc),
+                    onPressed: (){},
+                    child:Text(
+                      "Card Details",
+                      style: const TextStyle(
+                        color:  const Color(0xffffffff),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "ProximaNova",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.center
+                    )
+                  )
+                ),
+              ]
+            )
+                )
+
+        ]
+      )
     );
   }
   @override
