@@ -20,27 +20,25 @@ class ListViewItem extends StatelessWidget {
 
   _showModalBottomSheet(BuildContext context, itemTitle) {
     showModalBottomSheet(
-        context: context,
-        builder: (context) => Container(
-          height: 425,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                  Radius.circular(10)
-              ),
-              color:  const Color(0x00000000),
-          ),
-          child: Column(
-            children: <Widget>[
-              Text(itemTitle),
-              Image.asset(
-               itemPic
-              ),
-              RaisedButton(
-                child: Text('Card Details'),
-              )
-            ],
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft:Radius.circular(10.0),
+              topRight: Radius.circular(10.0)
           )
+      ),
+      context: context,
+      builder: (context) =>  Column(
+          children: <Widget>[
+            Text(itemTitle),
+            Image.asset(
+             itemPic
+            ),
+            RaisedButton(
+              child: Text('Card Details'),
+            )
+          ],
         )
+
     );
   }
   @override
