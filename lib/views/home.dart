@@ -154,7 +154,13 @@ class _MyHomePageState extends State<AppPage>
         index: _currentIndex,
         children: _list,
       ),
-      bottomNavigationBar: _hideNavigationBar
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(color: const Color(0x14000000), offset: Offset(0,-3), blurRadius: 20)
+            ],
+        ),
+        child: _hideNavigationBar
         ? SizedBox()
         : BottomNavigationBar(
             items: _myTabs,
@@ -168,6 +174,7 @@ class _MyHomePageState extends State<AppPage>
 
             fixedColor: Color(0xff0047cc),
         ),
+      )
     );
   }
 

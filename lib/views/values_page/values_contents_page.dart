@@ -256,9 +256,9 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         Radius.circular(10)
                       ),
                       boxShadow: [
-                        BoxShadow(color: Colors.grey[300], offset: Offset(0,1), blurRadius: 1)
+                        BoxShadow(color: const Color(0x05000000), offset: Offset(0,0), blurRadius: 16)
                       ],
-                      color: const Color(0xffffffff)
+                      color: Colors.white
                     ),
                     child: Stack(
                       children: <Widget>[
