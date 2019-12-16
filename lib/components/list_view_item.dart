@@ -30,30 +30,30 @@ class ListViewItem extends StatelessWidget {
       ),
       context: context,
       builder: (context) =>  Column(
-          children:<Widget>[
-            Container(
-              height: 80,
-              child:Stack(
-                children:<Widget>[
-                  PositionedDirectional(
-                    top: 30,
-                    start: 15,
-                    end:15,
-                    child: Container(
-                      height: 25,
-                      child: Text(
-                        "American Express® Gold",
-                        style: const TextStyle(
-                            color:  const Color(0xff042c5c),
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "ProximaNova",
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 16.0
-                        ),
-                        textAlign: TextAlign.center
-                      )
-                     ),
-                  ),
+        children:<Widget>[
+          Container(
+            height: 80,
+            child:Stack(
+              children:<Widget>[
+                PositionedDirectional(
+                  top: 30,
+                  start: 15,
+                  end:15,
+                  child: Container(
+                    height: 25,
+                    child: Text(
+                      "American Express® Gold",
+                      style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.center
+                    )
+                   ),
+                ),
                 PositionedDirectional(
                   top: 60,
                   start: 15,
@@ -142,12 +142,13 @@ class ListViewItem extends StatelessWidget {
                     )
                   )
                 ),
-              PositionedDirectional(
+                PositionedDirectional(
                   top: 30,
                   end: 30,
-                  child: Container(child:Row(
-                    children: <Widget>[
-                      Text(
+                  child: Container(
+                    child:Row(
+                      children: <Widget>[
+                        Text(
                           '6.4%',
                           style: const TextStyle(
                               color:  const Color(0xff1bc773),
@@ -157,10 +158,11 @@ class ListViewItem extends StatelessWidget {
                               fontSize: 16.0
                           ),
                           textAlign: TextAlign.right
-                      ),
-                    ],
+                        ),
+                      ],
+                    )
                   )
-                  ))
+                )
               ]
             )
           ),
@@ -189,8 +191,7 @@ class ListViewItem extends StatelessWidget {
                 ),
               ]
             )
-                )
-
+          )
         ]
       )
     );
