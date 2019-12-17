@@ -94,9 +94,20 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
     return new ListViewItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
   }
 
+  _showModalBottomSheet() {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft:Radius.circular(10.0),
+                topRight: Radius.circular(10.0)
+            )
+        ),
+        context: context,
+        builder: (context) =>Column()
+    );
+  }
 
-
-  @override
+        @override
   Widget build(BuildContext context) {
     super.build(context);
     return new CustomScrollView(
@@ -109,7 +120,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
               children: <Widget>[
                 PositionedDirectional(
                   top: 10,
-                  start: 15,
+                  start: 16,
                   child: SizedBox(
                     width: 106,
                     height: 28,
@@ -126,15 +137,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   ),
                 ),
                 PositionedDirectional(
-                  top: 10,
-                  end: 15,
+                  top: 2,
+                  end: 16,
                   child: IconButton(
-                    padding: const EdgeInsets.all(5.0),
                     color: Colors.white,
-                    iconSize: 12.0,
-                    alignment: Alignment.topLeft,
-                    icon: Icon(Icons.settings),
-                    onPressed:(){},
+                    iconSize: 18.0,
+                    icon: ImageIcon(AssetImage('assets/images/Settings.png')),
+                    onPressed:()=>_showModalBottomSheet(),
                   )
                 ),
                 PositionedDirectional(
@@ -147,12 +156,12 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   ),
                 ),
                 PositionedDirectional(
-                  bottom: 5,
-                  start: 15,
-                  end: 15,
+                  bottom: 4,
+                  start: 16,
+                  end: 16,
                   child: Container(
-                    //width: 343,
-                    height: 160,
+                    //width: 340,
+                    height: 166,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10)
@@ -164,40 +173,82 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       color: const Color(0xffffffff)
                     ),
                     child: Stack(
+                      alignment: Alignment.center,
                       children: <Widget>[
                         PositionedDirectional(
-                          top:15,
-                          start:15,
-                          end:15,
-                          child: Container(
-                            height: 50,
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 15,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "Total Cards",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff77869e),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 11.0
-                                              )
-                                          )
-                                      ),
-                                      Container(
-                                          height: 20,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "10",
+                          top:16,
+                          start:16,
+                          end:0,
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                width: 96,
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                        height: 16,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "Total Cards",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff77869e),
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 11.0
+                                            )
+                                        )
+                                    ),
+                                    Container(
+                                        height: 20,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "10",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff042c5c),
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 16.0
+                                            )
+                                        )
+                                    )
+                                  ],
+                                )
+                              ),
+                              Container(
+                                width: 96,
+                                alignment: Alignment.center,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                        height: 16,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "Annual Fees",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff77869e),
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 11.0
+                                            )
+                                        )
+                                    ),
+                                    Container(
+                                      height: 20,
+                                      width: 96,
+                                      alignment: Alignment.topLeft,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Text(
+                                              "\$799",
                                               style: const TextStyle(
                                                   color:  const Color(0xff042c5c),
                                                   fontWeight: FontWeight.w500,
@@ -205,38 +256,49 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                                                   fontStyle:  FontStyle.normal,
                                                   fontSize: 16.0
                                               )
+                                          ),
+                                          IconButton(
+                                            padding: const EdgeInsets.all(5.0),
+                                            color: const Color(0xff77869e),
+                                            iconSize: 12.0,
+                                            alignment: Alignment.topLeft,
+                                            icon: Icon(Icons.error_outline),
+                                            onPressed:(){},
                                           )
+                                        ],
                                       )
-                                    ],
-                                  )
+                                    ),
+                                  ],
                                 ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 15,
-                                          width: 100,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "Annual Fees",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff77869e),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 11.0
-                                              )
-                                          )
-                                      ),
-                                      Container(
+                              ),
+                              Container(
+                                width: 96,
+                                alignment: Alignment.centerRight,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                        height: 15,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "Annual Credits",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff77869e),
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 11.0
+                                            )
+                                        )
+                                    ),
+                                    Container(
                                         height: 20,
-                                        width: 100,
+                                        width: 96,
                                         alignment: Alignment.topLeft,
                                         child: Row(
                                           children: <Widget>[
                                             Text(
-                                                "\$799",
+                                                "\$520+",
                                                 style: const TextStyle(
                                                     color:  const Color(0xff042c5c),
                                                     fontWeight: FontWeight.w500,
@@ -255,219 +317,33 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                                             )
                                           ],
                                         )
-                                      ),
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 15,
-                                          width: 100,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "Annual Credits",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff77869e),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 11.0
-                                              )
-                                          )
-                                      ),
-                                      Container(
-                                          height: 20,
-                                          width: 100,
-                                          alignment: Alignment.topLeft,
-                                          child: Row(
-                                            children: <Widget>[
-                                              Text(
-                                                  "\$520+",
-                                                  style: const TextStyle(
-                                                      color:  const Color(0xff042c5c),
-                                                      fontWeight: FontWeight.w500,
-                                                      fontFamily: "ProximaNova",
-                                                      fontStyle:  FontStyle.normal,
-                                                      fontSize: 16.0
-                                                  )
-                                              ),
-                                              IconButton(
-                                                padding: const EdgeInsets.all(5.0),
-                                                color: const Color(0xff77869e),
-                                                iconSize: 12.0,
-                                                alignment: Alignment.topLeft,
-                                                icon: Icon(Icons.error_outline),
-                                                onPressed:(){},
-                                              )
-                                            ],
-                                          )
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
+                              )
+                            ],
                             )
-                          )
                         ),
 
                         PositionedDirectional(
-                          top:65,
-                          start:15,
-                          end:15,
-                          child: Container(
-                            height: 50,
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 15,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "GCs & Vouchers",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff77869e),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 11.0
-                                              )
-                                          )
-                                      ),
-                                      Container(
-                                          height: 20,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "\$367.12",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff042c5c),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 16.0
-                                              )
-                                          )
-                                      )
-                                    ],
-                                  )
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 15,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "Max Unit Value",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff77869e),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 11.0
-                                              )
-                                          )
-                                      ),
-                                      Container(
-                                          height: 20,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Row(
-                                            children: <Widget>[
-                                              Text(
-                                                  "1.6¢",
-                                                  style: const TextStyle(
-                                                      color:  const Color(0xff042c5c),
-                                                      fontWeight: FontWeight.w500,
-                                                      fontFamily: "ProximaNova",
-                                                      fontStyle:  FontStyle.normal,
-                                                      fontSize: 16.0
-                                                  )
-                                              ),
-                                              IconButton(
-                                                padding: const EdgeInsets.all(5.0),
-                                                color: const Color(0xff77869e),
-                                                iconSize: 12.0,
-                                                alignment: Alignment.topLeft,
-                                                icon: Icon(Icons.error_outline),
-                                                onPressed:(){},
-                                              )
-                                            ],
-                                          )
-                                      )
-                                    ],
-                                  )
-                                ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 15,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "AmEx Slots",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff77869e),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 11.0
-                                              )
-                                          )
-                                      ),
-                                      Container(
-                                          height: 20,
-                                          width: 80,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "1/5",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff042c5c),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 16.0
-                                              )
-                                          )
-                                      )
-                                    ],
-                                  )
-                                )
-                              ],
-                            ),
-                          )
-                        ),
-
-                        PositionedDirectional(
-                          top:115,
-                          start:15,
-                          end:15,
-                          height:50,
-                          child: Container(
-                            height: 50,
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
+                          top:66,
+                          start:16,
+                          end:0,
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                width: 96,
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
                                         height: 15,
-                                        width: 140,
+                                        width: 96,
                                         alignment: Alignment.topLeft,
                                         child: Text(
-                                            "Next Annual Fee Due",
+                                            "GCs & Vouchers",
                                             style: const TextStyle(
                                                 color:  const Color(0xff77869e),
                                                 fontWeight: FontWeight.w600,
@@ -475,16 +351,205 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                                                 fontStyle:  FontStyle.normal,
                                                 fontSize: 11.0
                                             )
-                                        ),
+                                        )
+                                    ),
+                                    Container(
+                                        height: 20,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "\$367.12",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff042c5c),
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 16.0
+                                            )
+                                        )
+                                    )
+                                  ],
+                                )
+                              ),
+                              Container(
+                                width: 96,
+                                alignment: Alignment.center,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                        height: 15,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "Max Unit Value",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff77869e),
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 11.0
+                                            )
+                                        )
+                                    ),
+                                    Container(
+                                        height: 20,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Row(
+                                          children: <Widget>[
+                                            Text(
+                                                "1.6¢",
+                                                style: const TextStyle(
+                                                    color:  const Color(0xff042c5c),
+                                                    fontWeight: FontWeight.w500,
+                                                    fontFamily: "ProximaNova",
+                                                    fontStyle:  FontStyle.normal,
+                                                    fontSize: 16.0
+                                                )
+                                            ),
+                                            IconButton(
+                                              padding: const EdgeInsets.all(5.0),
+                                              color: const Color(0xff77869e),
+                                              iconSize: 12.0,
+                                              alignment: Alignment.topLeft,
+                                              icon: Icon(Icons.error_outline),
+                                              onPressed:(){},
+                                            )
+                                          ],
+                                        )
+                                    )
+                                  ],
+                                )
+                              ),
+                              Container(
+                                width: 96,
+                                alignment: Alignment.centerRight,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                        height: 15,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "AmEx Slots",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff77869e),
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 11.0
+                                            )
+                                        )
+                                    ),
+                                    Container(
+                                        height: 20,
+                                        width: 96,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "1/5",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff042c5c),
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 16.0
+                                            )
+                                        )
+                                    )
+                                  ],
+                                )
+                              )
+                            ],
+                            ),
+                          ),
+
+
+                        PositionedDirectional(
+                          top:116,
+                          start:16,
+                          end:0,
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      height: 16,
+                                      width: 140,
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                          "Next Annual Fee Due",
+                                          style: const TextStyle(
+                                              color:  const Color(0xff77869e),
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: "ProximaNova",
+                                              fontStyle:  FontStyle.normal,
+                                              fontSize: 11.0
+                                          )
                                       ),
-                                      Container(
+                                    ),
+                                    Container(
+                                      height: 20,
+                                      width: 140,
+                                      alignment: Alignment.topLeft,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Text(
+                                              "Nov 1 2019",
+                                              style: const TextStyle(
+                                                  color:  const Color(0xff042c5c),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontFamily: "ProximaNova",
+                                                  fontStyle:  FontStyle.normal,
+                                                  fontSize: 16.0
+                                              )
+                                          ),
+                                          IconButton(
+                                            padding: const EdgeInsets.all(5.0),
+                                            color: const Color(0xff77869e),
+                                            iconSize: 12.0,
+                                            alignment: Alignment.topLeft,
+                                            highlightColor: const Color(0xffffffff),
+                                            splashColor: const Color(0xffffffff),
+                                            icon: Icon(Icons.error_outline),
+                                            onPressed:(){},
+                                          )
+                                        ],
+                                      )
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                        height: 16,
+                                        width: 140,
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            "Opened in 24 Months",
+                                            style: const TextStyle(
+                                                color:  const Color(0xff77869e),
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: "ProximaNova",
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 11.0
+                                            )
+                                        )
+                                    ),
+                                    Container(
                                         height: 20,
                                         width: 140,
                                         alignment: Alignment.topLeft,
                                         child: Row(
                                           children: <Widget>[
                                             Text(
-                                                "Nov 1 2019",
+                                                "2",
                                                 style: const TextStyle(
                                                     color:  const Color(0xff042c5c),
                                                     fontWeight: FontWeight.w500,
@@ -505,63 +570,11 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                                             )
                                           ],
                                         )
-                                      )
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 ),
-                                Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 15,
-                                          width: 140,
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              "Opened in 24 Months",
-                                              style: const TextStyle(
-                                                  color:  const Color(0xff77869e),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "ProximaNova",
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 11.0
-                                              )
-                                          )
-                                      ),
-                                      Container(
-                                          height: 20,
-                                          width: 140,
-                                          alignment: Alignment.topLeft,
-                                          child: Row(
-                                            children: <Widget>[
-                                              Text(
-                                                  "2",
-                                                  style: const TextStyle(
-                                                      color:  const Color(0xff042c5c),
-                                                      fontWeight: FontWeight.w500,
-                                                      fontFamily: "ProximaNova",
-                                                      fontStyle:  FontStyle.normal,
-                                                      fontSize: 16.0
-                                                  )
-                                              ),
-                                              IconButton(
-                                                padding: const EdgeInsets.all(5.0),
-                                                color: const Color(0xff77869e),
-                                                iconSize: 12.0,
-                                                alignment: Alignment.topLeft,
-                                                highlightColor: const Color(0xffffffff),
-                                                splashColor: const Color(0xffffffff),
-                                                icon: Icon(Icons.error_outline),
-                                                onPressed:(){},
-                                              )
-                                            ],
-                                          )
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )
+                              )
+                            ],
                           )
                         ),
                       ],
@@ -598,17 +611,14 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   ),
                 ),
                 PositionedDirectional(
-                  top: 10,
-                  end: 15,
+                  end: 16,
                   child: IconButton(
-                    padding: const EdgeInsets.all(5.0),
                     color: const Color(0xff042c5c),
-                    iconSize: 12.0,
-                    alignment: Alignment.topLeft,
+                    iconSize: 18.0,
                     highlightColor: const Color(0xffffffff),
                     splashColor: const Color(0xffffffff),
-                    icon: Icon(Icons.tune),
-                    onPressed:(){},
+                    icon: ImageIcon(AssetImage('assets/images/Sliders.png')),
+                    onPressed:()=>_showModalBottomSheet(),
                   )
                 ),
               ]
@@ -639,6 +649,17 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       )
                     )
                   ),
+                ),
+                PositionedDirectional(
+                    end: 16,
+                    child: IconButton(
+                      color: const Color(0xff042c5c),
+                      iconSize: 18.0,
+                      highlightColor: const Color(0xffffffff),
+                      splashColor: const Color(0xffffffff),
+                      icon: ImageIcon(AssetImage('assets/images/Sliders.png')),
+                      onPressed:()=>_showModalBottomSheet(),
+                    )
                 ),
               ]
             )
