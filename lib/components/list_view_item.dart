@@ -92,8 +92,8 @@ class ListViewItem extends StatelessWidget {
               ],
             )
           ),
-          SizedBox(height: 30),
-          Image.asset(itemPic),
+          SizedBox(height: 16),
+          Image.asset('assets/images/amex-gold-card.png',height: 128),
           Container(
             height: 100,
             child:Stack(
@@ -126,17 +126,6 @@ class ListViewItem extends StatelessWidget {
                               fontSize: 16.0
                           ),
                           textAlign: TextAlign.left
-                        ),
-                        Text(
-                            '6.4%',
-                            style: const TextStyle(
-                                color:  const Color(0xff1bc773),
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "ProximaNova",
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 16.0
-                            ),
-                            textAlign: TextAlign.right
                         ),
                       ],
                     )
