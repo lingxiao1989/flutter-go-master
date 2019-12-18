@@ -161,7 +161,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                     start: 16,
                     end: 16,
                     child: Container(
-                      height: 128,
+                      height: 164,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
                               Radius.circular(10)
@@ -671,6 +671,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
         ]
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xff0047cc),
         child: Icon(Icons.add,size: 20),
         onPressed: (){print('hahaha');},
       ),

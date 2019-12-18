@@ -29,7 +29,7 @@ class ListViewItem extends StatelessWidget {
           )
       ),
       context: context,
-      builder: (context) =>  Column(
+      builder: (context) => Column(
         children:<Widget>[
           Container(
             height: 80,
@@ -155,29 +155,37 @@ class ListViewItem extends StatelessWidget {
               ]
             )
           ),
-          SizedBox(
+          Container(
             height: 48,
-            child: Padding(
-              padding: EdgeInsets.only(left: 30,right: 30),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6.0)
-                ),
-                color: const Color(0xff0047cc),
-                onPressed: (){},
-                child:Text(
-                    "Card Details",
-                    style: const TextStyle(
-                        color:  const Color(0xffffffff),
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "ProximaNova",
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 16.0
+            child:Stack(
+              children:<Widget>[
+                PositionedDirectional(
+                  start: 30,
+                  end: 30,
+                  child: SizedBox(
+                    height: 48,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0)
+                      ),
+                      color: const Color(0xff0047cc),
+                      onPressed: (){},
+                      child:Text(
+                        "Card Details",
+                        style: const TextStyle(
+                          color:  const Color(0xffffffff),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                        ),
+                        textAlign: TextAlign.center
+                      )
                     ),
-                    textAlign: TextAlign.center
+                  ),
                 )
-              ),
-            ),
+              ]
+            )
           ),
         ]
       )
