@@ -220,7 +220,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
               children: <Widget>[
                 PositionedDirectional(
                   top: 10,
-                  start: 15,
+                  start: 18,
                   child: SizedBox(
                     width: 106,
                     height: 28,
@@ -246,11 +246,11 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                   ),
                 ),
                 PositionedDirectional(
-                  bottom: 5,
-                  start: 15,
-                  end: 15,
+                  bottom: 4,
+                  start: 16,
+                  end: 16,
                   child: Container(
-                    height: 125,
+                    height: 128,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10)
@@ -264,10 +264,10 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                       children: <Widget>[
                         PositionedDirectional(
                           top: 16,
-                          start: 15,
+                          start: 16,
                           child: SizedBox(
                             width: 20 ,
-                            height: 17,
+                            height: 18,
                             child: Text(
                               "for",
                               style: const TextStyle(
@@ -282,7 +282,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         ),
                         PositionedDirectional(
                           top: 0,
-                          start: 35,
+                          start: 36,
                           child:(Builder (builder:
                               (context) => FlatButton(
                                 onPressed: () {
@@ -315,7 +315,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 36, left: 15),
+                          padding: EdgeInsets.only(top: 36, left: 16),
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             primary: true,
@@ -396,7 +396,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
               children: <Widget>[
                 PositionedDirectional(
                   top: 10,
-                  start: 15,
+                  start: 18,
                   child:
                   SizedBox(
                     width: 146,
@@ -425,7 +425,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
               children: <Widget>[
                 PositionedDirectional(
                   top: 10,
-                  start: 15,
+                  start: 18,
                   child:
                   SizedBox(
                     width: 199,
