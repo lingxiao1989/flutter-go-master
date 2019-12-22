@@ -228,8 +228,8 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                       "Categories",
                       style: const TextStyle(
                         color:	const Color(0xffffffff),
-                        fontWeight: FontWeight.w900,
-                        fontFamily: "Avenir",
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "ProximaNova",
                         fontStyle:	FontStyle.normal,
                         fontSize: 20.0
                       )

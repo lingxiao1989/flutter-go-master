@@ -104,11 +104,11 @@ class _MyAppState extends State<MyApp> {
       title: 'title',
       theme: new ThemeData(
         primaryColor: Color(ThemeColor),
-        backgroundColor: Color(0xFFEFEFEF),
-        accentColor: Color(0xFF888888),
+        backgroundColor: Color(0xFFF8F9F9),
+        accentColor: Color(0xFFF8F9F9),
         textTheme: TextTheme(
           //设置Material的默认字体样式
-          body1: TextStyle(color: Color(0xFF888888), fontSize: 16.0),
+          body1: TextStyle(color: Color(0xFFF8F9F9), fontSize: 16.0),
         ),
         iconTheme: IconThemeData(
           color: Color(ThemeColor),
