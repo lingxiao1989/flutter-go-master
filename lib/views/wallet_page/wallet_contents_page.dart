@@ -219,7 +219,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
             onChanged: (bool value) {
             },
           ),
-          Divider(height: 1.0,indent: 60.0,color: const Color(0xffeeeeee)),
+          Divider(height: 1.0,indent: 60.0,color: Colors.grey),
           Container(
               height: 25,
               child: Text(
@@ -234,7 +234,9 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   textAlign: TextAlign.center
               )
           ),
-          CheckboxListTile(
+          RadioListTile(
+            //value: '数学',
+            //groupValue: _newValue,
             //secondary: const Icon(Icons.shutter_speed),
             title: const Text(
                 'List View',
@@ -253,7 +255,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
               //});
             },
           ),
-          CheckboxListTile(
+          RadioListTile(
             //secondary: const Icon(Icons.shutter_speed),
             title: const Text(
                 'Slide View',
