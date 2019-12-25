@@ -66,7 +66,191 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
       Categories.add(CategoryModel.fromJson(item));
     });
   }
-
+  _showSettingSheet() {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft:Radius.circular(10.0),
+                topRight: Radius.circular(10.0)
+            )
+        ),
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => FractionallySizedBox(
+          heightFactor: 0.8,
+          child: Column(
+              children:<Widget>[
+                Container(
+                    height: 80,
+                    child:Stack(
+                      children:<Widget>[
+                        PositionedDirectional(
+                          top: 30,
+                          start: 15,
+                          end:15,
+                          child: Container(
+                              height: 25,
+                              child: Text(
+                                  "Cashback Values",
+                                  style: const TextStyle(
+                                      color:  const Color(0xff042c5c),
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "ProximaNova",
+                                      fontStyle:  FontStyle.normal,
+                                      fontSize: 16.0
+                                  ),
+                                  textAlign: TextAlign.center
+                              )
+                          ),
+                        ),
+                        PositionedDirectional(
+                            top: 1,
+                            end: 1,
+                            child: IconButton(
+                              iconSize: 20,
+                              icon: Icon(Icons.clear),
+                              color: const Color(0xff042c5c),
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                            )
+                        )
+                      ],
+                    )
+                ),
+                RadioListTile(
+                  title: const Text(
+                      'Show Point Values',
+                      style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      )
+                  ),
+                  value: true,
+                  onChanged: (bool value) {
+                  },
+                ),
+                RadioListTile(
+                  title: const Text(
+                      'Show Cash Value Only',
+                      style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      )
+                  ),
+                  value: true,
+                  onChanged: (bool value) {
+                  },
+                ),
+                Divider(height: 1.0,indent: 60.0,color: Colors.grey),
+                Container(
+                    height: 25,
+                    child: Text(
+                        "Recommendation",
+                        style: const TextStyle(
+                            color:  const Color(0xff042c5c),
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        ),
+                        textAlign: TextAlign.center
+                    )
+                ),
+                CheckboxListTile(
+                  //secondary: const Icon(Icons.shutter_speed),
+                  title: const Text(
+                      'No Foreign Transaction Fee',
+                      style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      )
+                  ),
+                  value: true,
+                  onChanged: (bool value) {
+                    //setState(() {
+                    //this.check = !this.check;
+                    //});
+                  },
+                ),
+                CheckboxListTile(
+                  //secondary: const Icon(Icons.shutter_speed),
+                  title: const Text(
+                      'No Annual Fee',
+                      style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      )
+                  ),
+                  value: true,
+                  onChanged: (bool value) {
+                  },
+                ),
+                CheckboxListTile(
+                  //secondary: const Icon(Icons.shutter_speed),
+                  title: const Text(
+                      'Show Business Credit Cards',
+                      style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      )
+                  ),
+                  value: true,
+                  onChanged: (bool value) {
+                  },
+                ),
+                Container(
+                    height: 48,
+                    child:Stack(
+                        children:<Widget>[
+                          PositionedDirectional(
+                            start: 30,
+                            end: 30,
+                            child: SizedBox(
+                              height: 48,
+                              child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6.0)
+                                  ),
+                                  color: const Color(0xff0047cc),
+                                  onPressed: (){},
+                                  child:Text(
+                                      "Apply",
+                                      style: const TextStyle(
+                                          color:  const Color(0xffffffff),
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "ProximaNova",
+                                          fontStyle:  FontStyle.normal,
+                                          fontSize: 16.0
+                                      ),
+                                      textAlign: TextAlign.center
+                                  )
+                              ),
+                            ),
+                          )
+                        ]
+                    )
+                ),
+              ]
+          ),
+        )
+    );
+  }
   _showBottomSheet(BuildContext context) {
     showBottomSheet(
       context: context,
@@ -235,6 +419,16 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                       )
                     )
                   ),
+                ),
+                PositionedDirectional(
+                    top: 2,
+                    end: 16,
+                    child: IconButton(
+                      color: Colors.white,
+                      iconSize: 18.0,
+                      icon: ImageIcon(AssetImage('assets/images/Settings.png')),
+                      onPressed:()=>_showSettingSheet(),
+                    )
                 ),
                 PositionedDirectional(
                   start: 0,

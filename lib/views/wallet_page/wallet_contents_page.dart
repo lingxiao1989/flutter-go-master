@@ -94,20 +94,9 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
     return new ListViewItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
   }
 
-  _showModalBottomSheet() {
+  _showSortingSheet() {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft:Radius.circular(10.0),
-                topRight: Radius.circular(10.0)
-            )
-        ),
-        context: context,
-        builder: (context) =>Column()
-    );
-  }
-  _showSettingSheet() {
-    showModalBottomSheet(
+      isScrollControlled: true,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft:Radius.circular(10.0),
@@ -115,32 +104,34 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
           )
       ),
       context: context,
-      builder: (context) =>Column(
-        children:<Widget>[
-          Container(
-            height: 80,
-            child:Stack(
-              children:<Widget>[
-                PositionedDirectional(
-                  top: 30,
-                  start: 15,
-                  end:15,
-                  child: Container(
+      builder: (context) =>FractionallySizedBox(
+        heightFactor: 0.8,
+        child: Column(
+          children:<Widget>[
+            Container(
+              height: 80,
+              child:Stack(
+                children:<Widget>[
+                  PositionedDirectional(
+                    top: 30,
+                    start: 15,
+                    end:15,
+                    child: Container(
                       height: 25,
                       child: Text(
-                          "View Options",
-                          style: const TextStyle(
-                              color:  const Color(0xff042c5c),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ProximaNova",
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 16.0
-                          ),
-                          textAlign: TextAlign.center
+                        "Display",
+                        style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                        ),
+                        textAlign: TextAlign.center
                       )
+                    ),
                   ),
-                ),
-                PositionedDirectional(
+                  PositionedDirectional(
                     top: 1,
                     end: 1,
                     child: IconButton(
@@ -151,162 +142,364 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                         Navigator.pop(context);
                       },
                     )
-                )
-              ],
-            )
-          ),
-          CheckboxListTile(
-            //secondary: const Icon(Icons.shutter_speed),
-            title: const Text(
-              'Credit Card',
-              style: const TextStyle(
-                color:  const Color(0xff042c5c),
-                fontWeight: FontWeight.w400,
-                fontFamily: "ProximaNova",
-                fontStyle:  FontStyle.normal,
-                fontSize: 16.0
+                  )
+                ],
               )
             ),
-            //value: this.check,
-            onChanged: (bool value) {
-              //setState(() {
-                //this.check = !this.check;
-              //});
-            },
-          ),
-          CheckboxListTile(
-            //secondary: const Icon(Icons.shutter_speed),
-            title: const Text(
-                'Debit Card',
-                style: const TextStyle(
-                    color:  const Color(0xff042c5c),
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "ProximaNova",
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                )
-            ),
-            onChanged: (bool value) {
-            },
-          ),
-          CheckboxListTile(
-            //secondary: const Icon(Icons.shutter_speed),
-            title: const Text(
-                'Gift Card',
-                style: const TextStyle(
-                    color:  const Color(0xff042c5c),
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "ProximaNova",
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                )
-            ),
-            onChanged: (bool value) {
-            },
-          ),
-          CheckboxListTile(
-            //secondary: const Icon(Icons.shutter_speed),
-            title: const Text(
-                'Show Closed Card',
-                style: const TextStyle(
-                    color:  const Color(0xff042c5c),
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "ProximaNova",
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                )
-            ),
-            onChanged: (bool value) {
-            },
-          ),
-          Divider(height: 1.0,indent: 60.0,color: Colors.grey),
-          Container(
-              height: 25,
-              child: Text(
-                  "Layout",
+            RadioListTile(
+              title: const Text(
+                  'Show Bank Account Name',
                   style: const TextStyle(
                       color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                       fontFamily: "ProximaNova",
                       fontStyle:  FontStyle.normal,
                       fontSize: 16.0
-                  ),
-                  textAlign: TextAlign.center
-              )
-          ),
-          RadioListTile(
-            //value: '数学',
-            //groupValue: _newValue,
-            //secondary: const Icon(Icons.shutter_speed),
-            title: const Text(
-                'List View',
-                style: const TextStyle(
-                    color:  const Color(0xff042c5c),
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "ProximaNova",
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            RadioListTile(
+              title: const Text(
+                  'Show Next Statement Date',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            Divider(height: 1.0,indent: 60.0,color: Colors.grey),
+            Container(
+                height: 25,
+                child: Text(
+                    "Sort by",
+                    style: const TextStyle(
+                        color:  const Color(0xff042c5c),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "ProximaNova",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
+                    ),
+                    textAlign: TextAlign.center
                 )
             ),
-            //value: this.check,
-            onChanged: (bool value) {
-              //setState(() {
-              //this.check = !this.check;
-              //});
-            },
-          ),
-          RadioListTile(
-            //secondary: const Icon(Icons.shutter_speed),
-            title: const Text(
-                'Slide View',
+            RadioListTile(
+              title: const Text(
+                'Card Name: A to Z',
                 style: const TextStyle(
-                    color:  const Color(0xff042c5c),
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "ProximaNova",
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
+                  color:  const Color(0xff042c5c),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "ProximaNova",
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
                 )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
             ),
-            onChanged: (bool value) {
-            },
-          ),
-          Container(
+            RadioListTile(
+              title: const Text(
+                'Card Name: Z to A',
+                style: const TextStyle(
+                  color:  const Color(0xff042c5c),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "ProximaNova",
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
+                )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            RadioListTile(
+              title: const Text(
+                  'Account Opening Date: New to Old',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            RadioListTile(
+              title: const Text(
+                  'Account Opening Date: Old to New',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            Container(
               height: 48,
               child:Stack(
-                  children:<Widget>[
-                    PositionedDirectional(
-                      start: 30,
-                      end: 30,
-                      child: SizedBox(
-                        height: 48,
-                        child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6.0)
-                            ),
-                            color: const Color(0xff0047cc),
-                            onPressed: (){},
-                            child:Text(
-                                "Apply",
-                                style: const TextStyle(
-                                    color:  const Color(0xffffffff),
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "ProximaNova",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 16.0
-                                ),
-                                textAlign: TextAlign.center
-                            )
+                children:<Widget>[
+                  PositionedDirectional(
+                    start: 30,
+                    end: 30,
+                    child: SizedBox(
+                      height: 48,
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6.0)
                         ),
+                        color: const Color(0xff0047cc),
+                        onPressed: (){},
+                        child:Text(
+                          "Apply",
+                          style: const TextStyle(
+                            color:  const Color(0xffffffff),
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.center
+                        )
                       ),
-                    )
-                  ]
+                    ),
+                  )
+                ]
               )
-          ),
-        ]
-      ),
+            ),
+          ]
+        )
+      )
     );
   }
-        @override
+
+  _showSettingSheet() {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft:Radius.circular(10.0),
+          topRight: Radius.circular(10.0)
+        )
+      ),
+      isScrollControlled: true,
+      context: context,
+      builder: (context) => FractionallySizedBox(
+        heightFactor: 0.8,
+        child: Column(
+          children:<Widget>[
+            Container(
+              height: 80,
+              child:Stack(
+                children:<Widget>[
+                  PositionedDirectional(
+                    top: 30,
+                    start: 15,
+                    end:15,
+                    child: Container(
+                        height: 25,
+                        child: Text(
+                            "View Options",
+                            style: const TextStyle(
+                                color:  const Color(0xff042c5c),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            ),
+                            textAlign: TextAlign.center
+                        )
+                    ),
+                  ),
+                  PositionedDirectional(
+                      top: 1,
+                      end: 1,
+                      child: IconButton(
+                        iconSize: 20,
+                        icon: Icon(Icons.clear),
+                        color: const Color(0xff042c5c),
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                      )
+                  )
+                ],
+              )
+            ),
+            CheckboxListTile(
+              //secondary: const Icon(Icons.shutter_speed),
+              title: const Text(
+                'Credit Card',
+                style: const TextStyle(
+                  color:  const Color(0xff042c5c),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "ProximaNova",
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
+                )
+              ),
+              value: true,
+              onChanged: (bool value) {
+                //setState(() {
+                  //this.check = !this.check;
+                //});
+              },
+            ),
+            CheckboxListTile(
+              //secondary: const Icon(Icons.shutter_speed),
+              title: const Text(
+                  'Debit Card',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            CheckboxListTile(
+              //secondary: const Icon(Icons.shutter_speed),
+              title: const Text(
+                  'Gift Card',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            CheckboxListTile(
+              //secondary: const Icon(Icons.shutter_speed),
+              title: const Text(
+                  'Show Closed Card',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            Divider(height: 1.0,indent: 60.0,color: Colors.grey),
+            Container(
+                height: 25,
+                child: Text(
+                    "Layout",
+                    style: const TextStyle(
+                        color:  const Color(0xff042c5c),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "ProximaNova",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
+                    ),
+                    textAlign: TextAlign.center
+                )
+            ),
+            RadioListTile(
+              //value: '数学',
+              //groupValue: _newValue,
+              //secondary: const Icon(Icons.shutter_speed),
+              title: const Text(
+                  'List View',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              //value: this.check,
+              onChanged: (bool value) {
+                //setState(() {
+                //this.check = !this.check;
+                //});
+              },
+            ),
+            RadioListTile(
+              //secondary: const Icon(Icons.shutter_speed),
+              title: const Text(
+                  'Slide View',
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  )
+              ),
+              value: true,
+              onChanged: (bool value) {
+              },
+            ),
+            Container(
+                height: 48,
+                child:Stack(
+                    children:<Widget>[
+                      PositionedDirectional(
+                        start: 30,
+                        end: 30,
+                        child: SizedBox(
+                          height: 48,
+                          child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6.0)
+                              ),
+                              color: const Color(0xff0047cc),
+                              onPressed: (){},
+                              child:Text(
+                                  "Apply",
+                                  style: const TextStyle(
+                                      color:  const Color(0xffffffff),
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "ProximaNova",
+                                      fontStyle:  FontStyle.normal,
+                                      fontSize: 16.0
+                                  ),
+                                  textAlign: TextAlign.center
+                              )
+                          ),
+                        ),
+                      )
+                    ]
+                )
+            ),
+          ]
+        ),
+      )
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return new Scaffold(
@@ -815,7 +1008,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       highlightColor: const Color(0xffffffff),
                       splashColor: const Color(0xffffffff),
                       icon: ImageIcon(AssetImage('assets/images/Sliders.png')),
-                      onPressed:()=>_showModalBottomSheet(),
+                      onPressed:()=>_showSortingSheet(),
                     )
                   ),
                 ]
@@ -855,7 +1048,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                         highlightColor: const Color(0xffffffff),
                         splashColor: const Color(0xffffffff),
                         icon: ImageIcon(AssetImage('assets/images/Sliders.png')),
-                        onPressed:()=>_showModalBottomSheet(),
+                        onPressed:()=>_showSortingSheet(),
                       )
                   ),
                 ]
@@ -870,8 +1063,8 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
         ]
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff0047cc),
-        child: Icon(Icons.add,size: 20),
+        backgroundColor: const Color(0xff2e66e7),
+        child: Icon(Icons.add,size: 20,color: Colors.white,),
         onPressed: (){print('hahaha');},
       ),
     );
