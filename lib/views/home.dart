@@ -39,7 +39,7 @@ class _MyHomePageState extends State<AppPage>
   bool _hideNavigationBar=false;
   StreamSubscription _popSheetSubscription;
   SpUtil sp;
-  WidgetControlModel widgetControl = new WidgetControlModel();
+  //WidgetControlModel widgetControl = new WidgetControlModel();
   SearchHistoryList searchHistoryList;
   bool isSearch = false;
   String appBarTitle = tabData[0]['text'];
@@ -70,8 +70,9 @@ class _MyHomePageState extends State<AppPage>
     _list
       ..add(ValuesMainPage())
       ..add(WalletMainPage())
-      ..add(WidgetPage(Provider.db))
-      ..add(CollectionPage())
+      //..add(WidgetPage(Provider.db))
+      ..add(Container())
+      ..add(Container())
       ..add(FourthPage());
 
     //_setThemeColor();
@@ -117,20 +118,20 @@ class _MyHomePageState extends State<AppPage>
     print("searchHistoryList3 ${widgetPoint.name}");
     Application.router.navigateTo(context, "$targetRouter");
   }
-
+/*
   Widget buildSearchInput(BuildContext context) {
     return new SearchInput((value) async {
       if (value != '') {
         List<WidgetPoint> list = await widgetControl.search(value);
         return list
             .map((item) => new MaterialSearchResult<String>(
-                  value: item.name,
-                  icon: WidgetName2Icon.icons[item.name] ?? null,
-                  text: 'widget',
-                  onTap: () {
-                    onWidgetTap(item, context);
-                  },
-                ))
+          value: item.name,
+          icon: WidgetName2Icon.icons[item.name] ?? null,
+          text: 'widget',
+          onTap: () {
+            onWidgetTap(item, context);
+          },
+        ))
             .toList();
       } else {
         return null;
@@ -145,6 +146,7 @@ class _MyHomePageState extends State<AppPage>
 //    }
     return AppBar(title: buildSearchInput(context));
   }
+*/
 
   @override
   Widget build(BuildContext context) {

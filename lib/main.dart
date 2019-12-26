@@ -125,10 +125,10 @@ class _MyAppState extends State<MyApp> {
 }
 
 void main() async {
-  final provider = new Provider();
-  await provider.init(true);
-  sp = await SpUtil.getInstance();
-  new SearchHistoryList(sp);
-  db = Provider.db;
+  //final provider = new Provider();
+  //await provider.init(true);
+  //sp = await SpUtil.getInstance();
+  //new SearchHistoryList(sp);
+  //db = Provider.db;
   runApp(new MyApp());
 }
