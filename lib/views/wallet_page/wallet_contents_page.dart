@@ -23,7 +23,14 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
   Future<bool> _unKnow;
   GlobalKey<DisclaimerMsgState> key;
   List<CategoryModel> Categories;
+  bool _viewCreditCard = true;
+  bool _viewDebitCard = true;
+  bool _viewGiftCard = false;
+  bool _viewShowClosedCard = false;
   var _layoutDisplay = 1;
+
+  var _display = 1;
+  var _sortBy = 1;
   //var _categories=['Non-bonused Spending', 'Restaurant', 'Groceries', 'Gas Station', 'Air Travel'];
 
   @override
@@ -158,8 +165,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: 1,
+              groupValue: _display,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _display=value;
               },
             ),
             RadioListTile(
@@ -173,8 +185,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: 2,
+              groupValue: _display,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _display=value;
               },
             ),
             Divider(height: 1.0,indent: 60.0,color: Colors.grey),
@@ -203,8 +220,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   fontSize: 16.0
                 )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: 1,
+              groupValue: _sortBy,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _sortBy=value;
               },
             ),
             RadioListTile(
@@ -218,8 +240,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   fontSize: 16.0
                 )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: 2,
+              groupValue: _sortBy,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _sortBy=value;
               },
             ),
             RadioListTile(
@@ -233,8 +260,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: 3,
+              groupValue: _sortBy,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _sortBy=value;
               },
             ),
             RadioListTile(
@@ -248,8 +280,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: 4,
+              groupValue: _sortBy,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _sortBy=value;
               },
             ),
             Container(
@@ -354,11 +391,12 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   fontSize: 16.0
                 )
               ),
-              value: true,
-              onChanged: (bool value) {
-                //setState(() {
-                  //this.check = !this.check;
-                //});
+              value: _viewCreditCard,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _viewCreditCard=!_viewCreditCard;
               },
             ),
             CheckboxListTile(
@@ -373,8 +411,12 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: _viewDebitCard,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _viewDebitCard=!_viewDebitCard;
               },
             ),
             CheckboxListTile(
@@ -389,12 +431,15 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: _viewGiftCard,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _viewGiftCard=!_viewGiftCard;
               },
             ),
             CheckboxListTile(
-              //secondary: const Icon(Icons.shutter_speed),
               title: const Text(
                   'Show Closed Card',
                   style: const TextStyle(
@@ -405,8 +450,12 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              value: _viewShowClosedCard,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
+              onChanged: (value) {
+                (context as Element).markNeedsBuild();
+                _viewShowClosedCard=!_viewShowClosedCard;
               },
             ),
             Divider(height: 1.0,indent: 60.0,color: Colors.grey),
@@ -425,9 +474,6 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                 )
             ),
             RadioListTile(
-              //value: 1,
-              //groupValue: _layoutDisplay,
-              //secondary: const Icon(Icons.shutter_speed),
               title: const Text(
                   'List View',
                   style: const TextStyle(
@@ -438,18 +484,17 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              //value: this.check,
+              value: 1,
+              groupValue: _layoutDisplay,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
               onChanged: (value) {
-                setState(() {
-                  value = !value;
-                });
+                (context as Element).markNeedsBuild();
+                _layoutDisplay=value;
+                //});
               },
             ),
             RadioListTile(
-              value: 2,
-              groupValue: _layoutDisplay,
-              //secondary: const Icon(Icons.shutter_speed),
               title: const Text(
                   'Slide View',
                   style: const TextStyle(
@@ -461,10 +506,13 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                   )
               ),
               //value: true,
+              value: 2,
+              groupValue: _layoutDisplay,
+              activeColor: const Color(0xff0047cc),
+              controlAffinity: ListTileControlAffinity.trailing,
               onChanged: (value) {
-                setState(() {
-                  _layoutDisplay = value;
-                });
+                (context as Element).markNeedsBuild();
+                _layoutDisplay=value;
               },
             ),
             Container(

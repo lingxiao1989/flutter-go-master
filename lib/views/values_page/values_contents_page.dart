@@ -189,7 +189,6 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                       start: 30,
                       end: 30,
                       child: CheckboxListTile(
-                        //secondary: const Icon(Icons.shutter_speed),
                         title: const Text(
                             'No Foreign Transaction Fee',
                             style: const TextStyle(
@@ -201,13 +200,11 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                             )
                         ),
                         activeColor: const Color(0xff0047cc),
-                        checkColor: const Color(0xff0047cc),
                         controlAffinity: ListTileControlAffinity.trailing,
                         value: _noForeignTransactionFee,
                         onChanged: (value) {
                           (context as Element).markNeedsBuild();
-                          _noForeignTransactionFee=!value;
-                          //});
+                          _noForeignTransactionFee=!_noForeignTransactionFee;
                         },
                       ),
                     ),
@@ -216,7 +213,6 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                       start: 30,
                       end: 30,
                       child: CheckboxListTile(
-                        //secondary: const Icon(Icons.shutter_speed),
                         title: const Text(
                             'No Annual Fee',
                             style: const TextStyle(
@@ -228,12 +224,11 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                             )
                         ),
                         activeColor: const Color(0xff0047cc),
-                        checkColor: const Color(0xff0047cc),
                         controlAffinity: ListTileControlAffinity.trailing,
                         value: _noAnnualFee,
                         onChanged: (value) {
                           (context as Element).markNeedsBuild();
-                          _noAnnualFee=!value;
+                          _noAnnualFee=!_noAnnualFee;
                         },
                       ),
                     ),
@@ -254,12 +249,11 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                             )
                         ),
                         activeColor: const Color(0xff0047cc),
-                        checkColor: const Color(0xff0047cc),
                         controlAffinity: ListTileControlAffinity.trailing,
                         value: _showBusinessCreditCards,
                         onChanged: (value) {
                           (context as Element).markNeedsBuild();
-                          _showBusinessCreditCards=!value;
+                          _showBusinessCreditCards=!_showBusinessCreditCards;
                         },
                       ),
                     ),
