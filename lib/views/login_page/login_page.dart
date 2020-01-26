@@ -268,7 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: <Widget>[
                       SizedBox(height: 35.0),
                       Image.asset(
-                        'assets/images/FlutterGo.png',
+                        'assets/images/Aokay.png',
                         fit: BoxFit.contain,
                         width: 100.0,
                         height: 100.0,

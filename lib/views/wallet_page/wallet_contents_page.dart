@@ -23,6 +23,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
   Future<bool> _unKnow;
   GlobalKey<DisclaimerMsgState> key;
   List<CategoryModel> Categories;
+  var _layoutDisplay = 1;
   //var _categories=['Non-bonused Spending', 'Restaurant', 'Groceries', 'Gas Station', 'Air Travel'];
 
   @override
@@ -424,8 +425,8 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                 )
             ),
             RadioListTile(
-              //value: '数学',
-              //groupValue: _newValue,
+              //value: 1,
+              //groupValue: _layoutDisplay,
               //secondary: const Icon(Icons.shutter_speed),
               title: const Text(
                   'List View',
@@ -439,13 +440,15 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
               ),
               value: true,
               //value: this.check,
-              onChanged: (bool value) {
-                //setState(() {
-                //this.check = !this.check;
-                //});
+              onChanged: (value) {
+                setState(() {
+                  value = !value;
+                });
               },
             ),
             RadioListTile(
+              value: 2,
+              groupValue: _layoutDisplay,
               //secondary: const Icon(Icons.shutter_speed),
               title: const Text(
                   'Slide View',
@@ -457,8 +460,11 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                       fontSize: 16.0
                   )
               ),
-              value: true,
-              onChanged: (bool value) {
+              //value: true,
+              onChanged: (value) {
+                setState(() {
+                  _layoutDisplay = value;
+                });
               },
             ),
             Container(

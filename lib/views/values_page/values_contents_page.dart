@@ -34,6 +34,10 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
     {'id': 5, 'categoryName':'a test', 'iconImage': null},
   ];
 
+  var _cashbackValuesDisplay=1;
+  bool _noForeignTransactionFee=false;
+  bool _noAnnualFee=false;
+  bool _showBusinessCreditCards=false;
   var _currentChoice=0;
   @override
   bool get wantKeepAlive => true;
@@ -68,195 +72,240 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
   }
   _showSettingSheet() {
     showModalBottomSheet(
+        isScrollControlled: true,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 topLeft:Radius.circular(10.0),
                 topRight: Radius.circular(10.0)
             )
         ),
-        isScrollControlled: true,
+        //isScrollControlled: true,
         context: context,
         builder: (context) => FractionallySizedBox(
           heightFactor: 0.8,
-          child: Column(
-              children:<Widget>[
-                Container(
-                    height: 80,
-                    child:Stack(
-                      children:<Widget>[
-                        PositionedDirectional(
-                          top: 30,
-                          start: 15,
-                          end:15,
-                          child: Container(
-                              height: 25,
-                              child: Text(
-                                  "Cashback Values",
-                                  style: const TextStyle(
-                                      color:  const Color(0xff042c5c),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "ProximaNova",
-                                      fontStyle:  FontStyle.normal,
-                                      fontSize: 16.0
-                                  ),
-                                  textAlign: TextAlign.center
-                              )
-                          ),
-                        ),
-                        PositionedDirectional(
-                            top: 1,
-                            end: 1,
-                            child: IconButton(
-                              iconSize: 20,
-                              icon: Icon(Icons.clear),
-                              color: const Color(0xff042c5c),
-                              onPressed: (){
-                                Navigator.pop(context);
-                              },
-                            )
-                        )
-                      ],
-                    )
-                ),
-                RadioListTile(
-                  title: const Text(
-                      'Show Point Values',
-                      style: const TextStyle(
-                          color:  const Color(0xff042c5c),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "ProximaNova",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      )
-                  ),
-                  value: true,
-                  onChanged: (bool value) {
-                  },
-                ),
-                RadioListTile(
-                  title: const Text(
-                      'Show Cash Value Only',
-                      style: const TextStyle(
-                          color:  const Color(0xff042c5c),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "ProximaNova",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      )
-                  ),
-                  value: true,
-                  onChanged: (bool value) {
-                  },
-                ),
-                Divider(height: 1.0,indent: 60.0,color: Colors.grey),
-                Container(
-                    height: 25,
-                    child: Text(
-                        "Recommendation",
-                        style: const TextStyle(
-                            color:  const Color(0xff042c5c),
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "ProximaNova",
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 16.0
-                        ),
-                        textAlign: TextAlign.center
-                    )
-                ),
-                CheckboxListTile(
-                  //secondary: const Icon(Icons.shutter_speed),
-                  title: const Text(
-                      'No Foreign Transaction Fee',
-                      style: const TextStyle(
-                          color:  const Color(0xff042c5c),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "ProximaNova",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      )
-                  ),
-                  value: true,
-                  onChanged: (bool value) {
-                    //setState(() {
-                    //this.check = !this.check;
-                    //});
-                  },
-                ),
-                CheckboxListTile(
-                  //secondary: const Icon(Icons.shutter_speed),
-                  title: const Text(
-                      'No Annual Fee',
-                      style: const TextStyle(
-                          color:  const Color(0xff042c5c),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "ProximaNova",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      )
-                  ),
-                  value: true,
-                  onChanged: (bool value) {
-                  },
-                ),
-                CheckboxListTile(
-                  //secondary: const Icon(Icons.shutter_speed),
-                  title: const Text(
-                      'Show Business Credit Cards',
-                      style: const TextStyle(
-                          color:  const Color(0xff042c5c),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "ProximaNova",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      )
-                  ),
-                  value: true,
-                  onChanged: (bool value) {
-                  },
-                ),
-                Container(
-                    height: 48,
-                    child:Stack(
-                        children:<Widget>[
-                          PositionedDirectional(
-                            start: 30,
-                            end: 30,
-                            child: SizedBox(
-                              height: 48,
-                              child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6.0)
-                                  ),
-                                  color: const Color(0xff0047cc),
-                                  onPressed: (){},
-                                  child:Text(
-                                      "Apply",
-                                      style: const TextStyle(
-                                          color:  const Color(0xffffffff),
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: "ProximaNova",
-                                          fontStyle:  FontStyle.normal,
-                                          fontSize: 16.0
-                                      ),
-                                      textAlign: TextAlign.center
-                                  )
+          child:
+          Column(
+            children:<Widget>[
+              Container(
+                height: 64,
+                child:Stack(
+                  children:<Widget>[
+                    PositionedDirectional(
+                      top: 30,
+                      start: 16,
+                      end:16,
+                      child: Container(
+                          height: 24,
+                          child: Text(
+                              "Cashback Values",
+                              style: const TextStyle(
+                                  color:  const Color(0xff042c5c),
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "ProximaNova",
+                                  fontStyle:  FontStyle.normal,
+                                  fontSize: 16.0
                               ),
-                            ),
+                              textAlign: TextAlign.center
                           )
-                        ]
+                      ),
+                    ),
+                    PositionedDirectional(
+                        top: 1,
+                        end: 1,
+                        child: IconButton(
+                          iconSize: 20,
+                          icon: Icon(Icons.clear),
+                          color: const Color(0xff042c5c),
+                          onPressed: (){
+                            Navigator.pop(context);
+                          },
+                        )
+                    )
+                  ],
+                )
+              ),
+              RadioListTile(
+                title: const Text(
+                    'Show Point Values',
+                    style: const TextStyle(
+                        color:  const Color(0xff042c5c),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "ProximaNova",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
                     )
                 ),
-              ]
+                value: 1,
+                groupValue: _cashbackValuesDisplay,
+                activeColor: const Color(0xff0047cc),
+                controlAffinity: ListTileControlAffinity.trailing,
+                onChanged: (value) {
+                  (context as Element).markNeedsBuild();
+                  _cashbackValuesDisplay=value;
+                },
+              ),
+              RadioListTile(
+                title: const Text(
+                    'Show Cash Value Only',
+                    style: const TextStyle(
+                        color:  const Color(0xff042c5c),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "ProximaNova",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
+                    )
+                ),
+                value: 2,
+                groupValue: _cashbackValuesDisplay,
+                activeColor: const Color(0xff0047cc),
+                controlAffinity: ListTileControlAffinity.trailing,
+                onChanged: (value) {
+                  (context as Element).markNeedsBuild();
+                  _cashbackValuesDisplay=value;
+                },
+              ),
+              Divider(height: 1.0,indent:16, endIndent:16,color: Colors.grey),
+              SizedBox(height: 20),
+              Container(
+                  height: 32,
+                  child: Text(
+                      "Recommendation",
+                      style: const TextStyle(
+                          color:  const Color(0xff042c5c),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.center
+                  )
+              ),
+
+              Container(
+                height: 238,
+                child:Stack(
+                  children:<Widget>[
+                    PositionedDirectional(
+                      start: 30,
+                      end: 30,
+                      child: CheckboxListTile(
+                        //secondary: const Icon(Icons.shutter_speed),
+                        title: const Text(
+                            'No Foreign Transaction Fee',
+                            style: const TextStyle(
+                                color:  const Color(0xff042c5c),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            )
+                        ),
+                        activeColor: const Color(0xff0047cc),
+                        checkColor: const Color(0xff0047cc),
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        value: _noForeignTransactionFee,
+                        onChanged: (value) {
+                          (context as Element).markNeedsBuild();
+                          _noForeignTransactionFee=!value;
+                          //});
+                        },
+                      ),
+                    ),
+                    PositionedDirectional(
+                      top:36,
+                      start: 30,
+                      end: 30,
+                      child: CheckboxListTile(
+                        //secondary: const Icon(Icons.shutter_speed),
+                        title: const Text(
+                            'No Annual Fee',
+                            style: const TextStyle(
+                                color:  const Color(0xff042c5c),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            )
+                        ),
+                        activeColor: const Color(0xff0047cc),
+                        checkColor: const Color(0xff0047cc),
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        value: _noAnnualFee,
+                        onChanged: (value) {
+                          (context as Element).markNeedsBuild();
+                          _noAnnualFee=!value;
+                        },
+                      ),
+                    ),
+                    PositionedDirectional(
+                      top: 72,
+                      start: 30,
+                      end: 30,
+                      child: CheckboxListTile(
+                        //secondary: const Icon(Icons.shutter_speed),
+                        title: const Text(
+                            'Show Business Credit Cards',
+                            style: const TextStyle(
+                                color:  const Color(0xff042c5c),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            )
+                        ),
+                        activeColor: const Color(0xff0047cc),
+                        checkColor: const Color(0xff0047cc),
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        value: _showBusinessCreditCards,
+                        onChanged: (value) {
+                          (context as Element).markNeedsBuild();
+                          _showBusinessCreditCards=!value;
+                        },
+                      ),
+                    ),
+                    PositionedDirectional(
+                      top: 144,
+                      start: 30,
+                      end: 30,
+                      child: SizedBox(
+                        height: 48,
+                        child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6.0)
+                            ),
+                            color: const Color(0xff0047cc),
+                            onPressed: (){},
+                            child:Text(
+                                "Apply",
+                                style: const TextStyle(
+                                    color:  const Color(0xffffffff),
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "ProximaNova",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                ),
+                                textAlign: TextAlign.center
+                            )
+                        ),
+                      ),
+                    )
+                  ]
+                )
+              ),
+            ]
           ),
         )
     );
   }
-  _showBottomSheet(BuildContext context) {
-    showBottomSheet(
+  _showCategorySheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (context) => ListView(
+      builder: (context) => FractionallySizedBox(
+        heightFactor: 0.9,
+        child: Column(
       // 生成一个列表选择器
-        children: List.generate(
+          children: List.generate(
           Categories.length+1,
           (index) {
             if(index==0){
@@ -283,7 +332,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         icon: Icon(Icons.clear),
                         color: const Color(0xff042c5c),
                         onPressed: (){
-                          eventBus.fire(ApplicationEvent(false));
+                          //eventBus.fire(ApplicationEvent(false));
                           Navigator.pop(context);
                         },
                       )
@@ -316,12 +365,13 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
               onTap: () {
                 setCurrentCategory(index);
                 print('tapped item ${Categories[index].categoryName}');
-                eventBus.fire(ApplicationEvent(false));
+                //eventBus.fire(ApplicationEvent(false));
                 Navigator.pop(context);
               }
             );
           }
         )
+      )
       )
     );
   }
@@ -480,8 +530,8 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                           child:(Builder (builder:
                               (context) => FlatButton(
                                 onPressed: () {
-                                  eventBus.fire(ApplicationEvent(true));
-                                  _showBottomSheet(context);
+                                  //eventBus.fire(ApplicationEvent(true));
+                                  _showCategorySheet();
                                 },
                                 padding: EdgeInsets.all(0.0),
                                 child: Row(
@@ -582,7 +632,6 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
             ),
           ),
         ),
-
         SliverToBoxAdapter(
           child: new Container(
             height: 40,
