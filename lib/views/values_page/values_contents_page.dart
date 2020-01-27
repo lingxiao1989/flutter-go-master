@@ -82,12 +82,12 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
         //isScrollControlled: true,
         context: context,
         builder: (context) => FractionallySizedBox(
-          heightFactor: 0.8,
+          heightFactor: 0.68,
           child:
           Column(
             children:<Widget>[
               Container(
-                height: 64,
+                height: 60,
                 child:Stack(
                   children:<Widget>[
                     PositionedDirectional(
@@ -95,7 +95,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                       start: 16,
                       end:16,
                       child: Container(
-                          height: 24,
+                          height: 20,
                           child: Text(
                               "Cashback Values",
                               style: const TextStyle(
@@ -124,171 +124,161 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                   ],
                 )
               ),
-              RadioListTile(
-                title: const Text(
-                    'Show Point Values',
-                    style: const TextStyle(
-                        color:  const Color(0xff042c5c),
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "ProximaNova",
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 16.0
-                    )
-                ),
-                value: 1,
-                groupValue: _cashbackValuesDisplay,
-                activeColor: const Color(0xff0047cc),
-                controlAffinity: ListTileControlAffinity.trailing,
-                onChanged: (value) {
-                  (context as Element).markNeedsBuild();
-                  _cashbackValuesDisplay=value;
-                },
-              ),
-              RadioListTile(
-                title: const Text(
-                    'Show Cash Value Only',
-                    style: const TextStyle(
-                        color:  const Color(0xff042c5c),
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "ProximaNova",
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 16.0
-                    )
-                ),
-                value: 2,
-                groupValue: _cashbackValuesDisplay,
-                activeColor: const Color(0xff0047cc),
-                controlAffinity: ListTileControlAffinity.trailing,
-                onChanged: (value) {
-                  (context as Element).markNeedsBuild();
-                  _cashbackValuesDisplay=value;
-                },
-              ),
-              Divider(height: 1.0,indent:16, endIndent:16,color: Colors.grey),
-              SizedBox(height: 20),
-              Container(
-                  height: 32,
-                  child: Text(
-                      "Recommendation",
-                      style: const TextStyle(
-                          color:  const Color(0xff042c5c),
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "ProximaNova",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
+              Padding(
+                padding: EdgeInsets.only(left: 16,right: 4),
+                child: Column(
+                  children: <Widget>[
+                    RadioListTile(
+                      title: const Text(
+                          'Show Point Values',
+                          style: const TextStyle(
+                              color:  const Color(0xff042c5c),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          )
                       ),
-                      textAlign: TextAlign.center
-                  )
-              ),
-
-              Container(
-                height: 238,
-                child:Stack(
-                  children:<Widget>[
-                    PositionedDirectional(
-                      start: 30,
-                      end: 30,
-                      child: CheckboxListTile(
-                        title: const Text(
-                            'No Foreign Transaction Fee',
-                            style: const TextStyle(
-                                color:  const Color(0xff042c5c),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "ProximaNova",
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 16.0
-                            )
-                        ),
-                        activeColor: const Color(0xff0047cc),
-                        controlAffinity: ListTileControlAffinity.trailing,
-                        value: _noForeignTransactionFee,
-                        onChanged: (value) {
-                          (context as Element).markNeedsBuild();
-                          _noForeignTransactionFee=!_noForeignTransactionFee;
-                        },
-                      ),
+                      value: 1,
+                      groupValue: _cashbackValuesDisplay,
+                      activeColor: const Color(0xff0047cc),
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      onChanged: (value) {
+                        (context as Element).markNeedsBuild();
+                        _cashbackValuesDisplay=value;
+                      },
                     ),
-                    PositionedDirectional(
-                      top:36,
-                      start: 30,
-                      end: 30,
-                      child: CheckboxListTile(
-                        title: const Text(
-                            'No Annual Fee',
-                            style: const TextStyle(
-                                color:  const Color(0xff042c5c),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "ProximaNova",
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 16.0
-                            )
-                        ),
-                        activeColor: const Color(0xff0047cc),
-                        controlAffinity: ListTileControlAffinity.trailing,
-                        value: _noAnnualFee,
-                        onChanged: (value) {
-                          (context as Element).markNeedsBuild();
-                          _noAnnualFee=!_noAnnualFee;
-                        },
+                    RadioListTile(
+                      title: const Text(
+                          'Show Cash Value Only',
+                          style: const TextStyle(
+                              color:  const Color(0xff042c5c),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          )
                       ),
+                      value: 2,
+                      groupValue: _cashbackValuesDisplay,
+                      activeColor: const Color(0xff0047cc),
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      onChanged: (value) {
+                        (context as Element).markNeedsBuild();
+                        _cashbackValuesDisplay=value;
+                      },
                     ),
-                    PositionedDirectional(
-                      top: 72,
-                      start: 30,
-                      end: 30,
-                      child: CheckboxListTile(
-                        //secondary: const Icon(Icons.shutter_speed),
-                        title: const Text(
-                            'Show Business Credit Cards',
-                            style: const TextStyle(
-                                color:  const Color(0xff042c5c),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "ProximaNova",
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 16.0
-                            )
-                        ),
-                        activeColor: const Color(0xff0047cc),
-                        controlAffinity: ListTileControlAffinity.trailing,
-                        value: _showBusinessCreditCards,
-                        onChanged: (value) {
-                          (context as Element).markNeedsBuild();
-                          _showBusinessCreditCards=!_showBusinessCreditCards;
-                        },
-                      ),
-                    ),
-                    PositionedDirectional(
-                      top: 144,
-                      start: 30,
-                      end: 30,
-                      child: SizedBox(
-                        height: 48,
-                        child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6.0)
-                            ),
-                            color: const Color(0xff0047cc),
-                            onPressed: (){},
-                            child:Text(
-                                "Apply",
-                                style: const TextStyle(
-                                    color:  const Color(0xffffffff),
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "ProximaNova",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 16.0
-                                ),
-                                textAlign: TextAlign.center
-                            )
-                        ),
-                      ),
-                    )
                   ]
                 )
               ),
+              Padding(
+                  padding: EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 20),
+                  child: Divider(height: 1.0, color: Colors.grey)
+              ),
+              Text(
+                  "Recommendation",
+                  style: const TextStyle(
+                      color:  const Color(0xff042c5c),
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "ProximaNova",
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.center
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 16,right: 4, top: 10),
+                child: Column(
+                  children: <Widget>[
+                    CheckboxListTile(
+                      title: const Text(
+                          'No Foreign Transaction Fee',
+                          style: const TextStyle(
+                              color:  const Color(0xff042c5c),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          )
+                      ),
+                      activeColor: const Color(0xff0047cc),
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      value: _noForeignTransactionFee,
+                      onChanged: (value) {
+                        (context as Element).markNeedsBuild();
+                        _noForeignTransactionFee=!_noForeignTransactionFee;
+                      },
+                    ),
+                    CheckboxListTile(
+                      title: const Text(
+                          'No Annual Fee',
+                          style: const TextStyle(
+                              color:  const Color(0xff042c5c),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          )
+                      ),
+                      activeColor: const Color(0xff0047cc),
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      value: _noAnnualFee,
+                      onChanged: (value) {
+                        (context as Element).markNeedsBuild();
+                        _noAnnualFee=!_noAnnualFee;
+                      },
+                    ),
+                    CheckboxListTile(
+                      //secondary: const Icon(Icons.shutter_speed),
+                      title: const Text(
+                          'Show Business Credit Cards',
+                          style: const TextStyle(
+                              color:  const Color(0xff042c5c),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "ProximaNova",
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          )
+                      ),
+                      activeColor: const Color(0xff0047cc),
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      value: _showBusinessCreditCards,
+                      onChanged: (value) {
+                        (context as Element).markNeedsBuild();
+                        _showBusinessCreditCards=!_showBusinessCreditCards;
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16, left: 30, right: 30),
+                child: Container(
+                  height: 48,
+                  width: double.infinity,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0)
+                    ),
+                    color: const Color(0xff0047cc),
+                    onPressed: (){},
+                    child:Text(
+                        "Apply",
+                        style: const TextStyle(
+                            color:  const Color(0xffffffff),
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        ),
+                        textAlign: TextAlign.center
+                    )
+                  ),
+                ),
+              )
             ]
-          ),
-        )
+          )
+        ),
     );
   }
   _showCategorySheet() {

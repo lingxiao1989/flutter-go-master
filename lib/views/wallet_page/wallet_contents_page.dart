@@ -101,232 +101,6 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
     var codeUrl = '${item.detailUrl}';
     return new ListViewItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
   }
-
-  _showSortingSheet() {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft:Radius.circular(10.0),
-              topRight: Radius.circular(10.0)
-          )
-      ),
-      context: context,
-      builder: (context) =>FractionallySizedBox(
-        heightFactor: 0.8,
-        child: Column(
-          children:<Widget>[
-            Container(
-              height: 80,
-              child:Stack(
-                children:<Widget>[
-                  PositionedDirectional(
-                    top: 30,
-                    start: 15,
-                    end:15,
-                    child: Container(
-                      height: 25,
-                      child: Text(
-                        "Display",
-                        style: const TextStyle(
-                          color:  const Color(0xff042c5c),
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "ProximaNova",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                        ),
-                        textAlign: TextAlign.center
-                      )
-                    ),
-                  ),
-                  PositionedDirectional(
-                    top: 1,
-                    end: 1,
-                    child: IconButton(
-                      iconSize: 20,
-                      icon: Icon(Icons.clear),
-                      color: const Color(0xff042c5c),
-                      onPressed: (){
-                        Navigator.pop(context);
-                      },
-                    )
-                  )
-                ],
-              )
-            ),
-            RadioListTile(
-              title: const Text(
-                  'Show Bank Account Name',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              value: 1,
-              groupValue: _display,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _display=value;
-              },
-            ),
-            RadioListTile(
-              title: const Text(
-                  'Show Next Statement Date',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              value: 2,
-              groupValue: _display,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _display=value;
-              },
-            ),
-            Divider(height: 1.0,indent: 60.0,color: Colors.grey),
-            Container(
-                height: 25,
-                child: Text(
-                    "Sort by",
-                    style: const TextStyle(
-                        color:  const Color(0xff042c5c),
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "ProximaNova",
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 16.0
-                    ),
-                    textAlign: TextAlign.center
-                )
-            ),
-            RadioListTile(
-              title: const Text(
-                'Card Name: A to Z',
-                style: const TextStyle(
-                  color:  const Color(0xff042c5c),
-                  fontWeight: FontWeight.w400,
-                  fontFamily: "ProximaNova",
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-                )
-              ),
-              value: 1,
-              groupValue: _sortBy,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _sortBy=value;
-              },
-            ),
-            RadioListTile(
-              title: const Text(
-                'Card Name: Z to A',
-                style: const TextStyle(
-                  color:  const Color(0xff042c5c),
-                  fontWeight: FontWeight.w400,
-                  fontFamily: "ProximaNova",
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-                )
-              ),
-              value: 2,
-              groupValue: _sortBy,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _sortBy=value;
-              },
-            ),
-            RadioListTile(
-              title: const Text(
-                  'Account Opening Date: New to Old',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              value: 3,
-              groupValue: _sortBy,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _sortBy=value;
-              },
-            ),
-            RadioListTile(
-              title: const Text(
-                  'Account Opening Date: Old to New',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              value: 4,
-              groupValue: _sortBy,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _sortBy=value;
-              },
-            ),
-            Container(
-              height: 48,
-              child:Stack(
-                children:<Widget>[
-                  PositionedDirectional(
-                    start: 30,
-                    end: 30,
-                    child: SizedBox(
-                      height: 48,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6.0)
-                        ),
-                        color: const Color(0xff0047cc),
-                        onPressed: (){},
-                        child:Text(
-                          "Apply",
-                          style: const TextStyle(
-                            color:  const Color(0xffffffff),
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "ProximaNova",
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 16.0
-                          ),
-                          textAlign: TextAlign.center
-                        )
-                      ),
-                    ),
-                  )
-                ]
-              )
-            ),
-          ]
-        )
-      )
-    );
-  }
-
   _showSettingSheet() {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
@@ -338,11 +112,11 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
       isScrollControlled: true,
       context: context,
       builder: (context) => FractionallySizedBox(
-        heightFactor: 0.8,
+        heightFactor: 0.76,
         child: Column(
           children:<Widget>[
             Container(
-              height: 80,
+              height: 60,
               child:Stack(
                 children:<Widget>[
                   PositionedDirectional(
@@ -350,7 +124,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                     start: 15,
                     end:15,
                     child: Container(
-                        height: 25,
+                        height: 20,
                         child: Text(
                             "View Options",
                             style: const TextStyle(
@@ -379,161 +153,218 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                 ],
               )
             ),
-            CheckboxListTile(
-              //secondary: const Icon(Icons.shutter_speed),
-              title: const Text(
-                'Credit Card',
-                style: const TextStyle(
-                  color:  const Color(0xff042c5c),
-                  fontWeight: FontWeight.w400,
-                  fontFamily: "ProximaNova",
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-                )
-              ),
-              value: _viewCreditCard,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _viewCreditCard=!_viewCreditCard;
-              },
-            ),
-            CheckboxListTile(
-              //secondary: const Icon(Icons.shutter_speed),
-              title: const Text(
-                  'Debit Card',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              value: _viewDebitCard,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _viewDebitCard=!_viewDebitCard;
-              },
-            ),
-            CheckboxListTile(
-              //secondary: const Icon(Icons.shutter_speed),
-              title: const Text(
-                  'Gift Card',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              value: _viewGiftCard,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _viewGiftCard=!_viewGiftCard;
-              },
-            ),
-            CheckboxListTile(
-              title: const Text(
-                  'Show Closed Card',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              value: _viewShowClosedCard,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _viewShowClosedCard=!_viewShowClosedCard;
-              },
-            ),
-            Divider(height: 1.0,indent: 60.0,color: Colors.grey),
-            Container(
-                height: 25,
-                child: Text(
-                    "Layout",
-                    style: const TextStyle(
+            Padding(
+              padding: EdgeInsets.only(left: 16,right: 4),
+              child: Column(
+                children: <Widget>[
+                  CheckboxListTile(
+                    //secondary: const Icon(Icons.shutter_speed),
+                    title: const Text(
+                      'Credit Card',
+                      style: const TextStyle(
                         color:  const Color(0xff042c5c),
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         fontFamily: "ProximaNova",
                         fontStyle:  FontStyle.normal,
                         fontSize: 16.0
+                      )
                     ),
-                    textAlign: TextAlign.center
-                )
+                    value: _viewCreditCard,
+                    activeColor: const Color(0xff0047cc),
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      (context as Element).markNeedsBuild();
+                      _viewCreditCard=!_viewCreditCard;
+                    },
+                  ),
+                  CheckboxListTile(
+                    //secondary: const Icon(Icons.shutter_speed),
+                    title: const Text(
+                        'Debit Card',
+                        style: const TextStyle(
+                            color:  const Color(0xff042c5c),
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        )
+                    ),
+                    value: _viewDebitCard,
+                    activeColor: const Color(0xff0047cc),
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      (context as Element).markNeedsBuild();
+                      _viewDebitCard=!_viewDebitCard;
+                    },
+                  ),
+                  CheckboxListTile(
+                    //secondary: const Icon(Icons.shutter_speed),
+                    title: const Text(
+                        'Gift Card',
+                        style: const TextStyle(
+                            color:  const Color(0xff042c5c),
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        )
+                    ),
+                    value: _viewGiftCard,
+                    activeColor: const Color(0xff0047cc),
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      (context as Element).markNeedsBuild();
+                      _viewGiftCard=!_viewGiftCard;
+                    },
+                  ),
+                  CheckboxListTile(
+                    title: const Text(
+                        'Show Closed Card',
+                        style: const TextStyle(
+                            color:  const Color(0xff042c5c),
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        )
+                    ),
+                    value: _viewShowClosedCard,
+                    activeColor: const Color(0xff0047cc),
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      (context as Element).markNeedsBuild();
+                      _viewShowClosedCard=!_viewShowClosedCard;
+                    },
+                  ),
+                ]
+              )
             ),
-            RadioListTile(
-              title: const Text(
-                  'List View',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
+            Padding(
+                padding: EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 20),
+                child: Divider(height: 1.0, color: Colors.grey)
+            ),
+            Text(
+              "Layout",
+              style: const TextStyle(
+                  color:  const Color(0xff042c5c),
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "ProximaNova",
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
               ),
-              value: 1,
-              groupValue: _layoutDisplay,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _layoutDisplay=value;
-                //});
-              },
+              textAlign: TextAlign.center
             ),
-            RadioListTile(
-              title: const Text(
-                  'Slide View',
-                  style: const TextStyle(
-                      color:  const Color(0xff042c5c),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "ProximaNova",
-                      fontStyle:  FontStyle.normal,
-                      fontSize: 16.0
-                  )
-              ),
-              //value: true,
-              value: 2,
-              groupValue: _layoutDisplay,
-              activeColor: const Color(0xff0047cc),
-              controlAffinity: ListTileControlAffinity.trailing,
-              onChanged: (value) {
-                (context as Element).markNeedsBuild();
-                _layoutDisplay=value;
-              },
+            Padding(
+              padding: EdgeInsets.only(left: 16,right: 4, top: 10),
+              child: Column(
+                children: <Widget>[
+                  RadioListTile(
+                    title: const Text(
+                        'List View',
+                        style: const TextStyle(
+                            color:  const Color(0xff042c5c),
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        )
+                    ),
+                    value: 1,
+                    groupValue: _layoutDisplay,
+                    activeColor: const Color(0xff0047cc),
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      (context as Element).markNeedsBuild();
+                      _layoutDisplay=value;
+                      //});
+                    },
+                  ),
+                  RadioListTile(
+                    title: const Text(
+                        'Slide View',
+                        style: const TextStyle(
+                            color:  const Color(0xff042c5c),
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "ProximaNova",
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        )
+                    ),
+                    //value: true,
+                    value: 2,
+                    groupValue: _layoutDisplay,
+                    activeColor: const Color(0xff0047cc),
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    onChanged: (value) {
+                      (context as Element).markNeedsBuild();
+                      _layoutDisplay=value;
+                    },
+                  ),
+                ]
+              )
             ),
-            Container(
+            Padding(
+              padding: EdgeInsets.only(top: 16, left: 30, right: 30),
+              child: Container(
                 height: 48,
-                child:Stack(
-                    children:<Widget>[
-                      PositionedDirectional(
-                        start: 30,
-                        end: 30,
-                        child: SizedBox(
-                          height: 48,
-                          child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6.0)
-                              ),
-                              color: const Color(0xff0047cc),
-                              onPressed: (){},
-                              child:Text(
-                                  "Apply",
+                width: double.infinity,
+                child: SizedBox(
+                  height: 48,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0)
+                    ),
+                    color: const Color(0xff0047cc),
+                    onPressed: (){},
+                    child:Text(
+                      "Apply",
+                      style: const TextStyle(
+                          color:  const Color(0xffffffff),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "ProximaNova",
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.center
+                    )
+                  )
+                )
+              )
+            )
+          ],
+        )
+      )
+    );
+  }
+
+  _showSortingSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft:Radius.circular(10.0),
+              topRight: Radius.circular(10.0)
+          )
+      ),
+      context: context,
+      builder: (context) =>FractionallySizedBox(
+          heightFactor: 0.76,
+          child: Column(
+              children:<Widget>[
+                Container(
+                    height: 60,
+                    child:Stack(
+                      children:<Widget>[
+                        PositionedDirectional(
+                          top: 30,
+                          start: 15,
+                          end:15,
+                          child: Container(
+                              height: 20,
+                              child: Text(
+                                  "Display",
                                   style: const TextStyle(
-                                      color:  const Color(0xffffffff),
+                                      color:  const Color(0xff042c5c),
                                       fontWeight: FontWeight.w500,
                                       fontFamily: "ProximaNova",
                                       fontStyle:  FontStyle.normal,
@@ -543,13 +374,198 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                               )
                           ),
                         ),
-                      )
-                    ]
+                        PositionedDirectional(
+                            top: 1,
+                            end: 1,
+                            child: IconButton(
+                              iconSize: 20,
+                              icon: Icon(Icons.clear),
+                              color: const Color(0xff042c5c),
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                            )
+                        )
+                      ],
+                    )
+                ),
+                Padding(
+                    padding: EdgeInsets.only(left: 16,right: 4),
+                    child: Column(
+                        children: <Widget>[
+                          RadioListTile(
+                            title: const Text(
+                                'Show Bank Account Name',
+                                style: const TextStyle(
+                                    color:  const Color(0xff042c5c),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "ProximaNova",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                )
+                            ),
+                            value: 1,
+                            groupValue: _display,
+                            activeColor: const Color(0xff0047cc),
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            onChanged: (value) {
+                              (context as Element).markNeedsBuild();
+                              _display=value;
+                            },
+                          ),
+                          RadioListTile(
+                            title: const Text(
+                                'Show Next Statement Date',
+                                style: const TextStyle(
+                                    color:  const Color(0xff042c5c),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "ProximaNova",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                )
+                            ),
+                            value: 2,
+                            groupValue: _display,
+                            activeColor: const Color(0xff0047cc),
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            onChanged: (value) {
+                              (context as Element).markNeedsBuild();
+                              _display=value;
+                            },
+                          ),
+                        ]
+                    )
+                ),
+                Padding(
+                    padding: EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 20),
+                    child: Divider(height: 1.0, color: Colors.grey)
+                ),
+                Text(
+                    "Sort by",
+                    style: const TextStyle(
+                        color:  const Color(0xff042c5c),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "ProximaNova",
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 16.0
+                    ),
+                    textAlign: TextAlign.center
+                ),
+                Padding(
+                    padding: EdgeInsets.only(left: 16,right: 4, top: 10),
+                    child: Column(
+                        children: <Widget>[
+                          RadioListTile(
+                            title: const Text(
+                                'Card Name: A to Z',
+                                style: const TextStyle(
+                                    color:  const Color(0xff042c5c),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "ProximaNova",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                )
+                            ),
+                            value: 1,
+                            groupValue: _sortBy,
+                            activeColor: const Color(0xff0047cc),
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            onChanged: (value) {
+                              (context as Element).markNeedsBuild();
+                              _sortBy=value;
+                            },
+                          ),
+                          RadioListTile(
+                            title: const Text(
+                                'Card Name: Z to A',
+                                style: const TextStyle(
+                                    color:  const Color(0xff042c5c),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "ProximaNova",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                )
+                            ),
+                            value: 2,
+                            groupValue: _sortBy,
+                            activeColor: const Color(0xff0047cc),
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            onChanged: (value) {
+                              (context as Element).markNeedsBuild();
+                              _sortBy=value;
+                            },
+                          ),
+                          RadioListTile(
+                            title: const Text(
+                                'Account Opening Date: New to Old',
+                                style: const TextStyle(
+                                    color:  const Color(0xff042c5c),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "ProximaNova",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                )
+                            ),
+                            value: 3,
+                            groupValue: _sortBy,
+                            activeColor: const Color(0xff0047cc),
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            onChanged: (value) {
+                              (context as Element).markNeedsBuild();
+                              _sortBy=value;
+                            },
+                          ),
+                          RadioListTile(
+                            title: const Text(
+                                'Account Opening Date: Old to New',
+                                style: const TextStyle(
+                                    color:  const Color(0xff042c5c),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "ProximaNova",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                )
+                            ),
+                            value: 4,
+                            groupValue: _sortBy,
+                            activeColor: const Color(0xff0047cc),
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            onChanged: (value) {
+                              (context as Element).markNeedsBuild();
+                              _sortBy=value;
+                            },
+                          ),
+                        ]
+                    )
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16, left: 30, right: 30),
+                  child: Container(
+                    height: 48,
+                    width: double.infinity,
+                    child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6.0)
+                        ),
+                        color: const Color(0xff0047cc),
+                        onPressed: (){},
+                        child:Text(
+                            "Apply",
+                            style: const TextStyle(
+                                color:  const Color(0xffffffff),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "ProximaNova",
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            ),
+                            textAlign: TextAlign.center
+                        )
+                    ),
+                  ),
                 )
-            ),
-          ]
-        ),
-      )
+              ]
+          )
+      ),
     );
   }
 

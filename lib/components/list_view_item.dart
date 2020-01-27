@@ -20,7 +20,18 @@ class ListViewItem extends StatelessWidget {
   const ListViewItem({Key key, this.itemPic, this.itemUrl, this.itemTitle, this.data})
       : super(key: key);
 
-  _showModalBottomSheet(BuildContext context, itemTitle) {
+  _showDetailSheet(BuildContext context, itemTitle) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) =>
+            FractionallySizedBox(
+                heightFactor: 1,
+                child: Column()
+            )
+    );
+  }
+  _showSnapShotSheet(BuildContext context, itemTitle) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -169,7 +180,7 @@ class ListViewItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6.0)
                       ),
                       color: const Color(0xff0047cc),
-                      onPressed: (){},
+                      onPressed: (){_showDetailSheet(context,itemTitle);},
                       child:Text(
                         "Card Details",
                         style: const TextStyle(
@@ -206,7 +217,7 @@ class ListViewItem extends StatelessWidget {
         margin: new EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
         child: ListTile(
           onTap: () {
-            _showModalBottomSheet(context,itemTitle);
+            _showSnapShotSheet(context,itemTitle);
             // _launchURL(itemUrl, context);
             //Application.router.navigateTo(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri.encodeComponent(itemUrl)}');
           },
