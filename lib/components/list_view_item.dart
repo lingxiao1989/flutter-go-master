@@ -23,12 +23,37 @@ class ListViewItem extends StatelessWidget {
   _showDetailSheet(BuildContext context, itemTitle) {
     showModalBottomSheet(
         isScrollControlled: true,
+        isDismissible: false,
+        useRootNavigator: true,
         context: context,
         builder: (context) =>
-            FractionallySizedBox(
-                heightFactor: 1,
-                child: Column()
-            )
+          FractionallySizedBox(
+              heightFactor: 1,
+              child: CustomScrollView(
+                slivers: <Widget>[
+                  SliverAppBar(
+                    backgroundColor: Colors.transparent,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.chevron_left,
+                        color: const Color(0xff042c5c),
+                      ),
+                      onPressed: () {Navigator.pop(context);},
+                    ),
+                    floating: true,
+                  ),
+                  SliverFixedExtentList(
+                    itemExtent: 50.0,
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) => ListTile(
+                        title: Text("Item $index"),
+                      ),
+                      childCount: 30,
+                    ),
+                  ),
+                ]
+              )
+          )
     );
   }
   _showSnapShotSheet(BuildContext context, itemTitle) {

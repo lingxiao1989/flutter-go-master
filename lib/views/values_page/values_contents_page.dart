@@ -261,7 +261,9 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
                         borderRadius: BorderRadius.circular(6.0)
                     ),
                     color: const Color(0xff0047cc),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
                     child:Text(
                         "Apply",
                         style: const TextStyle(
