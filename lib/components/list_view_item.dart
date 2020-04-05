@@ -12,15 +12,19 @@ import '../routers/routers.dart';
 import 'dart:core';
 import 'widget_item_details.dart';
 
-class ListViewItem extends StatelessWidget {
+class ListViewItem extends StatefulWidget {
   final String itemPic;
   final String itemUrl;
   final String itemTitle;
   final String data;
 
-  const ListViewItem({Key key, this.itemPic, this.itemUrl, this.itemTitle, this.data})
+  const ListViewItem(
+      {Key key, this.itemPic, this.itemUrl, this.itemTitle, this.data})
       : super(key: key);
-
+  @override
+  _listViewState createState() => _listViewState();
+}
+class _listViewState extends State<ListViewItem> {
   _showSnapShotSheet(BuildContext context, itemTitle) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
@@ -171,7 +175,7 @@ class ListViewItem extends StatelessWidget {
                       ),
                       color: const Color(0xff0047cc),
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => WidgetItemDetails()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => itemDetailsPage()));
                       },
                       child:Text(
                         "Card Details",
@@ -209,20 +213,20 @@ class ListViewItem extends StatelessWidget {
         margin: new EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
         child: ListTile(
           onTap: () {
-            _showSnapShotSheet(context,itemTitle);
+            _showSnapShotSheet(context, widget.itemTitle);
             // _launchURL(itemUrl, context);
             //Application.router.navigateTo(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(itemTitle)}&url=${Uri.encodeComponent(itemUrl)}');
           },
           leading:Image.asset(
             //this.data.bank_pic
-            itemPic,
+            widget.itemPic,
             width: 50,
             height: 50,
             //color: Colors.black45,
           ),
           title: Padding(
             child: Text(
-              itemTitle,
+              widget.itemTitle,
               style: TextStyle(
                   color:  const Color(0xff042c5c),
                   fontWeight: FontWeight.w700,
@@ -236,7 +240,7 @@ class ListViewItem extends StatelessWidget {
           subtitle: Row(
             children: <Widget>[
               Padding(
-                child: Text(data,
+                child: Text(widget.data,
                     style: TextStyle(
                         color:  const Color(0xff77869e),
                         fontWeight: FontWeight.w400,
