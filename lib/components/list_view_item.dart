@@ -68,7 +68,7 @@ class _listViewState extends State<ListViewItem> {
                     child:  SizedBox(
                       width: 268,
                       height: 14,
-                      child:   Text(
+                      child: Text(
                           "1 Membership Reward Points ≈ 1.6¢ (August 2019)",
                           style: const TextStyle(
                               color:  const Color(0xff77869e),
