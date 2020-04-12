@@ -7,12 +7,53 @@ class itemDetailsPage extends StatefulWidget {
 }
 
 class _itemDetailsState extends State<itemDetailsPage> {
+  ScrollController _controller = new ScrollController();
+  double appearRate=20.0;
+  double miniCardOpacity = 0.0;
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+
+      if (_controller.offset > 380 && miniCardOpacity < 1.0) {
+        double increment=(_controller.offset-380)/appearRate;
+        if (miniCardOpacity+increment<=1.0){
+          setState(() {
+            miniCardOpacity += increment;
+          });
+        }
+        else{
+          setState(() {
+            miniCardOpacity = 1.0;
+          });
+        }
+      } else if (_controller.offset <= 380 && miniCardOpacity > 0.0) {
+        double decrement=(380-_controller.offset)/appearRate;
+        if (miniCardOpacity-decrement>=0.0){
+          setState(() {
+            miniCardOpacity -= decrement;
+          });
+        }
+        else{
+          setState(() {
+            miniCardOpacity = 0.0;
+          });
+        }
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
           children: <Widget>[
             ListView(
+              controller: _controller,
               children: <Widget>[
                 SizedBox( height: 80,),
                 Container(
@@ -586,13 +627,26 @@ class _itemDetailsState extends State<itemDetailsPage> {
                     BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
                       child: Container(
-                        color: Colors.white.withOpacity(0.1),
+                        color: Colors.white.withOpacity(0.8),
                         height: 80,
                       ),
                     ),
                     Container(
                       height: 80,
                       child: AppBar(
+                        centerTitle: true,
+                        title: Container(
+                          height: 40,
+                          width: 64,
+                          child: Opacity(
+                            opacity: miniCardOpacity,
+                            child: Image.asset(
+                              'assets/images/amex-gold-card.png',
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                        ),
+                        //showMiniCard? Image.asset('assets/images/amex-gold-card.png',height: 40,width: 64,): null,
                         backgroundColor: Colors.transparent,
                         elevation: 0,
                         leading: IconButton(
