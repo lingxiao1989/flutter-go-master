@@ -8,7 +8,7 @@ class itemDetailsPage extends StatefulWidget {
 
 class _itemDetailsState extends State<itemDetailsPage> {
   ScrollController _controller = new ScrollController();
-  double appearRate=20.0;
+  double appearRate=50.0;
   double miniCardOpacity = 0.0;
   @override
   void dispose() {
