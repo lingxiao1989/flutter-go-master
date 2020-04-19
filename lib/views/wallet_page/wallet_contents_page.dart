@@ -276,7 +276,6 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                     onChanged: (value) {
                       (context as Element).markNeedsBuild();
                       _layoutDisplay=value;
-                      //});
                     },
                   ),
                   RadioListTile(
@@ -316,6 +315,9 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
                     ),
                     color: const Color(0xff0047cc),
                     onPressed: (){
+                      setState(() {
+                        _layoutDisplay=_layoutDisplay;
+                      });
                       Navigator.pop(context);
                     },
                     child:Text(
@@ -1089,7 +1091,22 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
               )
             ),
           ),
-          listComp.ListRefresh(getIndexListData,makeCard),
+          _layoutDisplay==1? listComp.ListRefresh(getIndexListData,makeCard) :
+          SliverToBoxAdapter(
+            child:Container(
+              child: PageView(
+                children: <Widget>[
+                  Image.asset('assets/images/amex-gold-card.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-delta-gold.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-everyday.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-hilton-honors.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-blue.png',height: 220,width: 360,),
+                ],
+              ),
+              width: 200,
+              height: 200,
+            ),
+          ),
           SliverToBoxAdapter(
             child: new Container(
               height: 40,
@@ -1133,7 +1150,22 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
           //new listComp.ListRefresh(getIndexListData,makeCard),
             //child: new List(),
             //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
-          listComp.ListRefresh(getIndexListData,makeCard),
+          _layoutDisplay==1? listComp.ListRefresh(getIndexListData,makeCard) :
+          SliverToBoxAdapter(
+            child:Container(
+              child: PageView(
+                children: <Widget>[
+                  Image.asset('assets/images/amex-gold-card.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-delta-gold.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-everyday.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-hilton-honors.png',height: 220,width: 360,),
+                  Image.asset('assets/images/amex-blue.png',height: 220,width: 360,),
+                ],
+              ),
+              width: 200,
+              height: 200,
+            ),
+          ),
         ]
       ),
       floatingActionButton: FloatingActionButton(
