@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:flutter_go/components/dots_indicator.dart';
 import 'package:flutter_go/components/list_view_item.dart';
 import 'package:flutter_go/components/list_refresh.dart' as listComp;
 import 'package:flutter_go/views/wallet_page/second_page_item.dart';
@@ -33,12 +34,31 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
   var _sortBy = 1;
   //var _categories=['Non-bonused Spending', 'Restaurant', 'Groceries', 'Gas Station', 'Air Travel'];
 
+  List<Widget> _pages= <Widget>[
+    Image.asset('assets/images/amex-gold-card.png',),
+    Image.asset('assets/images/amex-delta-gold.png',),
+    Image.asset('assets/images/amex-everyday.png',),
+    Image.asset('assets/images/amex-hilton-honors.png',),
+    Image.asset('assets/images/amex-blue.png',),
+  ];
+  var imgUrlList = [
+    'https://ws1.sinaimg.cn/large/0065oQSqgy1fwgzx8n1syj30sg15h7ew.jpg',
+    'https://ws1.sinaimg.cn/large/0065oQSqly1fw8wzdua6rj30sg0yc7gp.jpg',
+    'https://ws1.sinaimg.cn/large/0065oQSqly1fw0vdlg6xcj30j60mzdk7.jpg',
+    'https://ws1.sinaimg.cn/large/0065oQSqly1fuo54a6p0uj30sg0zdqnf.jpg'
+  ];
+
+  PageController _pageViewController = new PageController(viewportFraction: 0.8);
+
   @override
   bool get wantKeepAlive => true;
 
   @override
   void initState() {
     super.initState();
+    _pageViewController.addListener(() {
+
+    });
     if (key == null) {
       key = GlobalKey<DisclaimerMsgState>();
       // key = const Key('__RIKEY1__');
@@ -1093,18 +1113,24 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
           ),
           _layoutDisplay==1? listComp.ListRefresh(getIndexListData,makeCard) :
           SliverToBoxAdapter(
-            child:Container(
-              child: PageView(
-                children: <Widget>[
-                  Image.asset('assets/images/amex-gold-card.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-delta-gold.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-everyday.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-hilton-honors.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-blue.png',height: 220,width: 360,),
-                ],
-              ),
-              width: 200,
-              height: 200,
+            child:Column(
+              children: <Widget>[
+                PageView(
+                  controller: _pageViewController,
+                  children: _pages
+                ),
+                DotsIndicator(
+                  controller: _pageViewController,
+                  itemCount: _pages.length,
+                  onPageSelected: (int page) {
+                    _pageViewController.animateToPage(
+                      page,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.ease,
+                    );
+                  }
+                ),
+              ],
             ),
           ),
           SliverToBoxAdapter(
