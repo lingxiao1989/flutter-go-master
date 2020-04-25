@@ -34,30 +34,41 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
   var _sortBy = 1;
   //var _categories=['Non-bonused Spending', 'Restaurant', 'Groceries', 'Gas Station', 'Air Travel'];
 
-  List<Widget> _pages= <Widget>[
+  final List<Widget> _pages= <Widget>[
     Image.asset('assets/images/amex-gold-card.png',),
     Image.asset('assets/images/amex-delta-gold.png',),
     Image.asset('assets/images/amex-everyday.png',),
     Image.asset('assets/images/amex-hilton-honors.png',),
     Image.asset('assets/images/amex-blue.png',),
   ];
-  var imgUrlList = [
-    'https://ws1.sinaimg.cn/large/0065oQSqgy1fwgzx8n1syj30sg15h7ew.jpg',
-    'https://ws1.sinaimg.cn/large/0065oQSqly1fw8wzdua6rj30sg0yc7gp.jpg',
-    'https://ws1.sinaimg.cn/large/0065oQSqly1fw0vdlg6xcj30j60mzdk7.jpg',
-    'https://ws1.sinaimg.cn/large/0065oQSqly1fuo54a6p0uj30sg0zdqnf.jpg'
+  final List<String> _pageList = <String>[
+    'assets/images/amex-gold-card.png',
+    'assets/images/amex-delta-gold.png',
+    'assets/images/amex-everyday.png',
+    'assets/images/amex-hilton-honors.png',
+    'assets/images/amex-blue.png'
   ];
 
-  PageController _pageViewController = new PageController(viewportFraction: 0.8);
-
+  PageController _pageController1 = new PageController(viewportFraction: 0.8);
+  PageController _pageController2 = new PageController(viewportFraction: 0.8);
+  var _pageOffset1=0.0;
+  var _pageOffset2=0.0;
   @override
   bool get wantKeepAlive => true;
+
 
   @override
   void initState() {
     super.initState();
-    _pageViewController.addListener(() {
-
+    _pageController1.addListener(() {
+      setState(() {
+        _pageOffset1 = _pageController1.offset/288;
+      });
+    });
+    _pageController2.addListener(() {
+      setState(() {
+        _pageOffset2 = _pageController2.offset/288;
+      });
     });
     if (key == null) {
       key = GlobalKey<DisclaimerMsgState>();
@@ -75,6 +86,28 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
           }
         });
       });
+    }
+  }
+
+  double getPageScale(int index, double pageOffset){
+    print("pageOffset.floor():");
+    print(pageOffset.floor());
+    print("pageOffset:");
+    print(pageOffset);
+    print("index:");
+    print(index);
+
+    if (pageOffset<=index){
+      print(index-pageOffset);
+      print("end1");
+      return 0.9+(pageOffset-index);
+
+    }
+    else{
+      print(1-(pageOffset-index)*0.9);
+      print("end2");
+      return 1-(pageOffset-index)*0.9;
+
     }
   }
 
@@ -1113,25 +1146,54 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
           ),
           _layoutDisplay==1? listComp.ListRefresh(getIndexListData,makeCard) :
           SliverToBoxAdapter(
-            child:Column(
-              children: <Widget>[
-                PageView(
-                  controller: _pageViewController,
-                  children: _pages
+            child: Column(
+              children:<Widget>[
+                Container(
+                  height: 200,
+                  child: PageView.builder(
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: EdgeInsets.all(6),
+                        child: Transform.scale(
+                          scale: _pageOffset1.floor()==index? 1:0.9,
+                          //_pageOffset.floor()<index? 0.9+(_pageOffset-index) : 1-(_pageOffset-index)*0.9,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: const Color(0x10000000),
+                                    offset: Offset(0,0),
+                                    blurRadius: 4)
+                              ],
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Image.asset(
+                              _pageList[index],
+                              fit: BoxFit.scaleDown,
+                            ),
+                          )
+                        )
+                      );
+                    },
+                    itemCount: _pageList.length,
+                    controller: _pageController1,
+                    //onPageChanged: _onPageChange,
+                  ),
                 ),
                 DotsIndicator(
-                  controller: _pageViewController,
+                  controller: _pageController1,
                   itemCount: _pages.length,
+                  color: const Color(0xff0047cc),
                   onPageSelected: (int page) {
-                    _pageViewController.animateToPage(
+                    _pageController1.animateToPage(
                       page,
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.ease,
                     );
                   }
                 ),
-              ],
-            ),
+              ]
+            )
           ),
           SliverToBoxAdapter(
             child: new Container(
@@ -1178,20 +1240,56 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
             //child: listComp.ListRefresh(getIndexListData,makeCard,headerView)
           _layoutDisplay==1? listComp.ListRefresh(getIndexListData,makeCard) :
           SliverToBoxAdapter(
-            child:Container(
-              child: PageView(
-                children: <Widget>[
-                  Image.asset('assets/images/amex-gold-card.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-delta-gold.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-everyday.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-hilton-honors.png',height: 220,width: 360,),
-                  Image.asset('assets/images/amex-blue.png',height: 220,width: 360,),
-                ],
-              ),
-              width: 200,
-              height: 200,
-            ),
+              child: Column(
+                  children:<Widget>[
+                    Container(
+                      height: 200,
+                      child: PageView.builder(
+                        itemBuilder: (context, index) {
+                          return Container(
+                              padding: EdgeInsets.all(6),
+                              child: Transform.scale(
+                                  scale: _pageOffset2.floor()==index? 1:0.9,
+                                  //_pageOffset.floor()<index? 0.9+(_pageOffset-index) : 1-(_pageOffset-index)*0.9,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: const Color(0x10000000),
+                                            offset: Offset(0,0),
+                                            blurRadius: 4)
+                                      ],
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Image.asset(
+                                      _pageList[index],
+                                      fit: BoxFit.scaleDown,
+                                    ),
+                                  )
+                              )
+                          );
+                        },
+                        itemCount: _pageList.length,
+                        controller: _pageController2,
+                        //onPageChanged: _onPageChange,
+                      ),
+                    ),
+                    DotsIndicator(
+                        controller: _pageController2,
+                        itemCount: _pages.length,
+                        color: const Color(0xff0047cc),
+                        onPageSelected: (int page) {
+                          _pageController2.animateToPage(
+                            page,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.ease,
+                          );
+                        }
+                    ),
+                  ]
+              )
           ),
+          SliverToBoxAdapter(child: SizedBox(height: 20,))
         ]
       ),
       floatingActionButton: FloatingActionButton(
