@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_go/components/main_app_bar.dart';
-import './wallet_contents_page.dart';
-
+import './wallet_cards_page.dart';
+import './wallet_programs_page.dart';
+import './wallet_bank_accounts_page.dart';
 
 class _Page {
   final String labelId;
-
   _Page(this.labelId);
 }
 
@@ -59,10 +59,10 @@ class TabBarViewLayout extends StatelessWidget {
     String labelId = page.labelId;
     switch (labelId) {
       case 'Cards':
-        return SecondPage();
+        return CardPage();
         break;
       case 'Programs':
-        return Container();
+        return ProgramPage();
         break;
       case 'Bank Accounts':
         return Container();

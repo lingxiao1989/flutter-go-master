@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:flutter_go/components/list_view_item.dart';
+import 'package:flutter_go/components/list_view_card_item.dart';
 import 'package:flutter_go/components/list_refresh.dart' as listComp;
 import 'package:flutter_go/components/pagination.dart';
 import 'package:flutter_go/views/values_page/first_page_item.dart';
@@ -85,7 +85,7 @@ class SubPageState extends State<SubPage> with AutomaticKeepAliveClientMixin{
     var myTitle = '${item.title}';
     var myUsername = '${'👲'}: ${item.username} ';
     var codeUrl = '${item.detailUrl}';
-    return new ListViewItem(itemUrl:codeUrl,itemTitle: myTitle,data: myUsername,);
+    return new ListViewCardItem(itemUrl:codeUrl,itemTitle: myTitle,data: myUsername,);
   }
 
   headerView(){

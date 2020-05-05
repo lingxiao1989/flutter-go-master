@@ -5,21 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_go/components/dots_indicator.dart';
-import 'package:flutter_go/components/list_view_item.dart';
+import 'package:flutter_go/components/list_view_card_item.dart';
 import 'package:flutter_go/components/list_refresh.dart' as listComp;
 import 'package:flutter_go/views/wallet_page/second_page_item.dart';
 import 'package:flutter_go/components/disclaimer_msg.dart';
 import 'package:flutter_go/utils/net_utils.dart';
 import 'package:flutter_go/model/category.dart';
+import 'package:flutter_go/views/add_card_page/add_card_page.dart';
 
 // ValueKey<String> key;
 
-class SecondPage extends StatefulWidget {
+class CardPage extends StatefulWidget {
   @override
-  SecondPageState createState() => new SecondPageState();
+  CardPageState createState() => new CardPageState();
 }
 
-class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMixin{
+class CardPageState extends State<CardPage> with AutomaticKeepAliveClientMixin{
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _unKnow;
   GlobalKey<DisclaimerMsgState> key;
@@ -152,7 +153,7 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
     //var myTitle = '${item.title}';
     //var myUsername = '${'👲'}: ${item.username} ';
     var codeUrl = '${item.detailUrl}';
-    return new ListViewItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
+    return new ListViewCardItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
   }
   _showSettingSheet() {
     showModalBottomSheet(
@@ -1295,7 +1296,9 @@ class SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMix
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xff2e66e7),
         child: Icon(Icons.add,size: 20,color: Colors.white,),
-        onPressed: (){print('hahaha');},
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => addCardPage()));
+        },
       ),
     );
   }

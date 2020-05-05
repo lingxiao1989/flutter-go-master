@@ -12,19 +12,19 @@ import '../routers/routers.dart';
 import 'dart:core';
 import 'widget_item_details.dart';
 
-class ListViewItem extends StatefulWidget {
+class ListViewCardItem extends StatefulWidget {
   final String itemPic;
   final String itemUrl;
   final String itemTitle;
   final String data;
 
-  const ListViewItem(
+  const ListViewCardItem(
       {Key key, this.itemPic, this.itemUrl, this.itemTitle, this.data})
       : super(key: key);
   @override
   _listViewState createState() => _listViewState();
 }
-class _listViewState extends State<ListViewItem> {
+class _listViewState extends State<ListViewCardItem> {
   _showSnapShotSheet(BuildContext context, itemTitle) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(

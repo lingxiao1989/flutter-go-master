@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_go/widgets/elements/Form/Button/FlatButton/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:flutter_go/components/list_view_item.dart';
+import 'package:flutter_go/components/list_view_card_item.dart';
 import 'package:flutter_go/components/list_refresh.dart' as listComp;
 import 'package:flutter_go/components/pagination.dart';
 import 'package:flutter_go/views/values_page/first_page_item.dart';
@@ -403,7 +403,7 @@ class FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixin
     //var myTitle = '${item.title}';
     //var myUsername = '${'👲'}: ${item.username} ';
     var codeUrl = '${item.detailUrl}';
-    return new ListViewItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
+    return new ListViewCardItem(itemPic: backPic,itemUrl: codeUrl,itemTitle: myCardName,data: myProgramName,);
   }
 
   headerView(){
