@@ -65,7 +65,7 @@ class TabBarViewLayout extends StatelessWidget {
         return ProgramPage();
         break;
       case 'Bank Accounts':
-        return Container();
+        return BankAccountPage();
         break;
       default:
         return Container();
