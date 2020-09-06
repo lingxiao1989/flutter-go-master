@@ -76,5 +76,3 @@ class TabBarViewLayout extends StatelessWidget {
         }).toList());
   }
 }
-
-//ToDo: make a card searching page like this: https://www.jianshu.com/p/8d136f31b8a2
